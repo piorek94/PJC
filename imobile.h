@@ -10,6 +10,8 @@ public:
     virtual ~IMobile();
     virtual void move(int, int)=0;
     virtual void rotate(double)=0;
+    virtual int getX()=0;
+    virtual int getY()=0;
     virtual void setX(int)=0;
     virtual void setY(int)=0;
     virtual int getWidth()=0;

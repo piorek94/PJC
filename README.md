@@ -1,2 +1,0 @@
-# PJC
-Academic project
