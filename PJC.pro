@@ -14,9 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    isize.cpp
+    isize.cpp \
+    imobile.cpp \
+    iobject.cpp \
+    obstacle.cpp
 
 HEADERS  += mainwindow.h \
-    isize.h
+    isize.h \
+    imobile.h \
+    iobject.h \
+    obstacle.h
 
 FORMS    += mainwindow.ui
