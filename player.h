@@ -7,6 +7,8 @@ class Player : public Creature
 {
 public:
     Player();
+    ~Player();
+
 };
 
 #endif // PLAYER_H

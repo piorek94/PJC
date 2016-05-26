@@ -25,4 +25,3 @@ HEADERS  += \
     board.h \
     player.h
 
-FORMS    +=
