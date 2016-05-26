@@ -42,7 +42,7 @@ function clear() {
 }
 
 function run() {
-    $BUILD_DIR"/src/main/"FEITIR
+    $BUILD_DIR"/src/"PJC
 }
 
 while getopts ":cbrxh" opt; do

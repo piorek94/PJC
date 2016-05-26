@@ -15,5 +15,4 @@ set(MAIN_SOURCE_FILES board.cpp
         player.cpp)
 
 add_executable(PJC ${MAIN_SOURCE_FILES})
-
-target_link_libraries(PJC ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
+target_link_libraries(PJC ${SDL2_LDFLAGS} ${SDL2IMAGE_LDFLAGS})

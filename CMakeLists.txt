@@ -10,7 +10,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include(FindPkgConfig)
 
 pkg_search_module(SDL2 REQUIRED sdl2)
-pkg_search_module(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
+pkg_search_module(SDL2IMAGE REQUIRED SDL2_image)
 
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS})
 
