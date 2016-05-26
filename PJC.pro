@@ -11,7 +11,8 @@ SOURCES += main.cpp\
     obstacle.cpp \
     creature.cpp \
     board.cpp \
-    player.cpp
+    player.cpp \
+    gwindow.cpp
 
 PKGCONFIG += sdl2
 CONFIG += link_pkgconfig
@@ -23,5 +24,6 @@ HEADERS  += \
     obstacle.h \
     creature.h \
     board.h \
-    player.h
+    player.h \
+    gwindow.h
 

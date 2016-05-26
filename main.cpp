@@ -1,18 +1,18 @@
 #include <iostream>
-#include <SDL.h>
-#include <SDL2/SDL_image.h>
 
-//Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+#include "gwindow.h"
 
 int main( int argc, char* args[] )
 {
+
+
     //The window we'll be rendering to
     SDL_Window* window = NULL;
 
     //The surface contained by the window
     SDL_Surface* screenSurface = NULL;
+
+    SDL_Surface *aa=SDL_LoadBMP("trawa.bmp");
 
     //Initialize SDL
     if( SDL_Init( SDL_INIT_EVERYTHING) < 0 )
@@ -22,7 +22,7 @@ int main( int argc, char* args[] )
     else
     {
         //Create window
-        window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        window = SDL_CreateWindow( "Obrona stalingradu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if( window == NULL )
         {
             std::cout<<"Window could not be created! SDL_Error: %s\n"<<SDL_GetError();
@@ -32,8 +32,7 @@ int main( int argc, char* args[] )
             //Get window surface
             screenSurface = SDL_GetWindowSurface( window );
 
-            //Fill the surface white
-            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0, 250, 0 ) );
+            SDL_BlitSurface( aa, NULL, screenSurface, NULL );
 
             //Update the surface
             SDL_UpdateWindowSurface( window );
