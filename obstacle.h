@@ -10,18 +10,18 @@ protected:
     int Y;
     int Width;
     int Height;
-    bool CanPass;
 public:
+    virtual bool CanPass();
     Obstacle();
     ~Obstacle();
     int getX();
     int getY();
-    void setX(int);
-    void setY(int);
+    void setX(int _x);
+    void setY(int _y);
     int getWidth();
     int getHeight();
-    void setWidth(int);
-    void setHeight(int);
+    void setWidth(int _width);
+    void setHeight(int _height);
 };
 
 #endif // OBSTACLE_H

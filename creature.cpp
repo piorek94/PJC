@@ -4,3 +4,8 @@ Creature::Creature()
 {
 
 }
+
+Creature::~Creature()
+{
+
+}
