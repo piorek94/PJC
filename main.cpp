@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL.h>
+#include <SDL2/SDL_image.h>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -32,7 +33,7 @@ int main( int argc, char* args[] )
             screenSurface = SDL_GetWindowSurface( window );
 
             //Fill the surface white
-            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0, 0, 200 ) );
+            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0, 250, 0 ) );
 
             //Update the surface
             SDL_UpdateWindowSurface( window );

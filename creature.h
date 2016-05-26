@@ -29,8 +29,8 @@ public:
     virtual void setWidth(int _width)=0;
     virtual void setHeight(int _height)=0;
     virtual void shoot()=0;
-    bool isDead();
     virtual void setWeapon()=0;
+    bool isDead();
     int getHp();
     void setHp(int _hp);
     int getMaxHp();
