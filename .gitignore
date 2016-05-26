@@ -1,3 +1,5 @@
 *.pro
 *.pro.user
 *.ui
+.idea/
+build/
