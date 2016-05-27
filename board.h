@@ -11,10 +11,14 @@ class Board : public ISize
 private:
     int Width;
     int Height;
-public:
+    bool loadBoard(std::string _pathBoard);
+    void loadBackground(std::string _pathBackground);
     std::vector <Creature*> creatures;
     std::vector <Obstacle*> obstacles;
-    Board();
+public:
+    Creature* getCreature();
+    Obstacle* getObstacle();
+    Board(std::string _plik);
     ~Board();
     int getHeight();
     int getWidth();

@@ -1,6 +1,6 @@
 #include "board.h"
 
-Board::Board()
+Board::Board(std::string _plik)
 {
 
 }
