@@ -13,11 +13,14 @@ private:
     int Height;
     bool loadBoard(std::string _pathBoard);
 //    void loadBackground(std::string _pathBackground);
+
+public:
     std::vector <Creature*> creatures;
     std::vector <Obstacle*> obstacles;
-public:
-    Creature* getCreature();
-    Obstacle* getObstacle();
+    Creature* getCreature(int c);
+    Obstacle* getObstacle(int o);
+    void addCreature(Creature* _creature);
+    void addObstacle(Obstacle* _obstacle);
     Board(std::string _plik);
     ~Board();
     int getHeight();

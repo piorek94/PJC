@@ -4,21 +4,21 @@
 #include <SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-
-//Screen dimension constants
-const int SCREEN_WIDTH = 1024;
-const int SCREEN_HEIGHT = 1024;
+#include <board.h>
 
 class GWindow
 {
 private:
+    Board* mapa;
     SDL_Window *window;
     SDL_Surface *screenSurface;
     SDL_Surface *background;
     SDL_Surface *player;
     SDL_Surface *enemy;
     SDL_Surface *wall;
-    void wyswietlMape ();
+    void showObstacles(/*std::string _imgObstacle*/);
+    void showCreatures(std::string _imgCreature);
+    void showBackGround(std::string _imgBackground);
 public:
     GWindow(std::string _plik);
     void timerUpdate();
