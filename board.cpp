@@ -81,3 +81,13 @@ void Board::addObstacle(Obstacle* _obstacle)
 {
     obstacles.push_back(_obstacle);
 }
+
+int Board::getNumberOfObstacle()
+{
+    return (int)obstacles.size();
+}
+
+int Board::getNumberOfCreature()
+{
+    return (int)creatures.size();
+}

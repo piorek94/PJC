@@ -16,9 +16,9 @@ private:
     SDL_Surface *player;
     SDL_Surface *enemy;
     SDL_Surface *wall;
-    void showObstacles(/*std::string _imgObstacle*/);
-    void showCreatures(std::string _imgCreature);
-    void showBackGround(std::string _imgBackground);
+    void showObstacles();
+    void showCreatures();
+    void showBackGround();
 public:
     GWindow(std::string _plik);
     void timerUpdate();
