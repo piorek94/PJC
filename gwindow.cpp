@@ -22,8 +22,6 @@ GWindow::GWindow(std::string _plik)
             {
                 screenSurface = SDL_GetWindowSurface( window );
                 SDL_BlitSurface( background, NULL, screenSurface, NULL );
-                SDL_UpdateWindowSurface( window );
-                SDL_Delay( 2000 );
             }
         }
         else
@@ -51,5 +49,5 @@ GWindow::~GWindow()
 
 void GWindow::timerUpdate()
 {
-//    SDL_UpdateWindowSurface(  );
+    SDL_UpdateWindowSurface(window);
 }
