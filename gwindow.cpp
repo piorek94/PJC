@@ -1,21 +1,20 @@
 #include "gwindow.h"
-#include <vector>
 
-GWindow::GWindow(std::string _plik)
+GWindow::GWindow()
 {
-    mapa=new Board(_plik.c_str());
-    window = NULL;
-    screenSurface = NULL;
-    wall = SDL_LoadBMP("wall.bmp");
-    background=SDL_LoadBMP("trawa.bmp");
-    player=SDL_LoadBMP("player.bmp");
-    enemy=SDL_LoadBMP("enemy.bmp");
+    game=new Game();
     if( SDL_Init( SDL_INIT_EVERYTHING) < 0 )
     {
         std::cout<< "SDL could not initialize! SDL_Error: %s\n"<< SDL_GetError();
     }
     else
     {
+        window = NULL;
+        screenSurface = NULL;
+        wall = SDL_LoadBMP("wall.bmp");
+        background=SDL_LoadBMP("trawa.bmp");
+        player=SDL_LoadBMP("player.bmp");
+        enemy=SDL_LoadBMP("enemy.bmp");
         if(background==NULL || wall == NULL || player == NULL || enemy == NULL)
         {
             std::cout<<"SDL could not load bmp files:"<< SDL_GetError();
@@ -24,16 +23,18 @@ GWindow::GWindow(std::string _plik)
         {
             SDL_SetColorKey(player, SDL_TRUE, SDL_MapRGB(enemy->format, 255, 255, 255));
             SDL_SetColorKey(enemy, SDL_TRUE, SDL_MapRGB(enemy->format, 255, 255, 255));
-
-            if(mapa->getHeight()>background->h)
+//----------------------------------------------------------------------------------------------------------------------
+            if(game->getMapPtr()->getHeight()>background->h)
             {
-                mapa->setHeight(background->h);
+                game->getMapPtr()->setHeight(background->h);
             }
-            if(mapa->getWidth()>background->w)
+            if(game->getMapPtr()->getWidth()>background->w)
             {
-                mapa->setWidth(background->w);
+                game->getMapPtr()->setWidth(background->w);
             }
-            window = SDL_CreateWindow( "Obrona stalingradu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, mapa->getWidth(),mapa->getWidth(), SDL_WINDOW_SHOWN );
+            std::cout<<game->getMapPtr()->getWidth()<<"x"<<game->getMapPtr()->getHeight();
+//----------------------------------------------------------------------------------------------------------------------
+            window = SDL_CreateWindow( "Obrona stalingradu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, game->getMapPtr()->getWidth(),game->getMapPtr()->getHeight(), SDL_WINDOW_SHOWN );
             if( window == NULL )
             {
                 std::cout<<"Window could not be created! SDL_Error: %s\n"<<SDL_GetError();
@@ -41,6 +42,7 @@ GWindow::GWindow(std::string _plik)
             else
             {
                 screenSurface = SDL_GetWindowSurface( window );
+
             }
 
         }
@@ -50,7 +52,7 @@ GWindow::GWindow(std::string _plik)
 
 GWindow::~GWindow()
 {
-    delete mapa;
+    delete game;
     SDL_FreeSurface(screenSurface);
     SDL_FreeSurface(background);
     SDL_FreeSurface(player);
@@ -67,7 +69,7 @@ GWindow::~GWindow()
 
 void GWindow::timerUpdate()
 {
-    showBackGround();
+    showBackground();
     showObstacles();
     showCreatures();
     SDL_UpdateWindowSurface(window);
@@ -76,25 +78,25 @@ void GWindow::timerUpdate()
 void GWindow::showObstacles()
 {
     SDL_Rect dst;
-    for(int i=0;i<mapa->getNumberOfObstacle();i++)
+    for(int i=0;i<game->getMapPtr()->getNumberOfObstacle();i++)
     {
-        mapa->getObstacle(i)->setHeight(wall->h);
-        mapa->getObstacle(i)->setWidth(wall->w);
-        dst.x=mapa->getObstacle(i)->getX();
-        dst.y=mapa->getObstacle(i)->getY();
+        game->getMapPtr()->getObstacle(i)->setHeight(wall->h);
+        game->getMapPtr()->getObstacle(i)->setWidth(wall->w);
+        dst.x=game->getMapPtr()->getObstacle(i)->getX();
+        dst.y=game->getMapPtr()->getObstacle(i)->getY();
         SDL_BlitSurface(wall,NULL,screenSurface,&dst);
     }
 }
 
 void GWindow::showCreatures()
 {
-//    SDL_Rect dts;
-//    dts.x=300;
-//    dts.y=350;
-//    SDL_BlitSurface(player,NULL,screenSurface,&dts);
+    SDL_Rect dts;
+    dts.x=300;
+    dts.y=350;
+    SDL_BlitSurface(player,NULL,screenSurface,&dts);
 }
 
-void GWindow::showBackGround()
+void GWindow::showBackground()
 {
     SDL_BlitSurface( background, NULL, screenSurface, NULL );
 }

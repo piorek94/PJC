@@ -19,5 +19,5 @@ public:
     virtual void setWidth(int _width)=0;
     virtual void setHeight(int _height)=0;
 };
-
+//jeszcze pole mapy* powinien mieć
 #endif // IMOBILE_H

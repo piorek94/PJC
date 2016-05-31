@@ -3,13 +3,12 @@
 
 #include <SDL.h>
 #include <SDL2/SDL_image.h>
-#include <iostream>
-#include <board.h>
+#include <game.h>
 
 class GWindow
 {
 private:
-    Board* mapa;
+    Game* game;
     SDL_Window *window;
     SDL_Surface *screenSurface;
     SDL_Surface *background;
@@ -18,11 +17,10 @@ private:
     SDL_Surface *wall;
     void showObstacles();
     void showCreatures();
-    void showBackGround();
+    void showBackground();
 public:
-    GWindow(std::string _plik);
+    GWindow();
     void timerUpdate();
     ~GWindow();
 };
-
 #endif // GWINDOW_H

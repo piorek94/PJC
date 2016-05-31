@@ -11,7 +11,7 @@ protected:
     int Width;
     int Height;
 public:
-    virtual bool CanPass();
+    virtual bool CanPass();//after add inherit class it will be pure virtual
     Obstacle();
     ~Obstacle();
     int getX();

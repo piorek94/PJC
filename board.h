@@ -12,7 +12,6 @@ private:
     int Width;
     int Height;
     bool loadBoard(std::string _pathBoard);
-//    void loadBackground(std::string _pathBackground);
     std::vector <Creature*> creatures;
     std::vector <Obstacle*> obstacles;
 public:

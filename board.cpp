@@ -49,11 +49,11 @@ bool Board::loadBoard(std::string _pathBoard)
         return false;
     }
     int pomH,pomW,numOfObs,posX,posY;
-    source >> pomH;
     source >> pomW;
+    source >> pomH;
 
-    this->setHeight(pomH);
-    this->setWidth(pomW);
+    setHeight(pomH);
+    setWidth(pomW);
 
     source >> numOfObs;
 

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <ctime>
 #include "gwindow.h"
 
@@ -8,9 +7,8 @@ int main( int argc, char* args[] )
 {
     SDL_TimerID timer;
     srand(time(0));
-    const char *a="mapa.txt";
-    mainWindow = new GWindow(a);
-    timer = SDL_AddTimer( 15, callback, NULL );
+    mainWindow = new GWindow();
+    timer = SDL_AddTimer( 30, callback, NULL );
     SDL_Event e;
     bool game=1;
     while (game)
