@@ -15,6 +15,8 @@ private:
     SDL_Surface *player;
     SDL_Surface *enemy;
     SDL_Surface *wall;
+    SDL_Surface *barbwire;
+    SDL_Surface *mud;
     void showObstacles();
     void showCreatures();
     void showBackground();

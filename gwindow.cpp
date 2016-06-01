@@ -1,5 +1,5 @@
 #include "gwindow.h"
-
+#include <typeinfo>
 GWindow::GWindow()
 {
     game=new Game();
@@ -12,6 +12,8 @@ GWindow::GWindow()
         window = NULL;
         screenSurface = NULL;
         wall = SDL_LoadBMP("wall.bmp");
+        barbwire = SDL_LoadBMP("barbwire.bmp");
+        mud = SDL_LoadBMP("mud.bmp");
         background=SDL_LoadBMP("trawa.bmp");
         player=SDL_LoadBMP("player.bmp");
         enemy=SDL_LoadBMP("enemy.bmp");
@@ -23,6 +25,7 @@ GWindow::GWindow()
         {
             SDL_SetColorKey(player, SDL_TRUE, SDL_MapRGB(enemy->format, 255, 255, 255));
             SDL_SetColorKey(enemy, SDL_TRUE, SDL_MapRGB(enemy->format, 255, 255, 255));
+            SDL_SetColorKey(barbwire, SDL_TRUE, SDL_MapRGB(barbwire->format, 255, 255, 255));
 //----------------------------------------------------------------------------------------------------------------------
             if(game->getMapPtr()->getHeight()>background->h)
             {
@@ -80,12 +83,55 @@ void GWindow::showObstacles()
     SDL_Rect dst;
     for(int i=0;i<game->getMapPtr()->getNumberOfObstacle();i++)
     {
-        game->getMapPtr()->getObstacle(i)->setHeight(wall->h);
-        game->getMapPtr()->getObstacle(i)->setWidth(wall->w);
         dst.x=game->getMapPtr()->getObstacle(i)->getX();
         dst.y=game->getMapPtr()->getObstacle(i)->getY();
+        if(typeid(*(game->getMapPtr()->getObstacle(i)))== typeid(Wall))
+        {
+        game->getMapPtr()->getObstacle(i)->setHeight(wall->h);
+        game->getMapPtr()->getObstacle(i)->setWidth(wall->w);
         SDL_BlitSurface(wall,NULL,screenSurface,&dst);
+        }
+        if(typeid(*(game->getMapPtr()->getObstacle(i)))== typeid(Barbwire))
+        {
+        game->getMapPtr()->getObstacle(i)->setHeight(barbwire->h);
+        game->getMapPtr()->getObstacle(i)->setWidth(barbwire->w);
+        SDL_BlitSurface(barbwire,NULL,screenSurface,&dst);
+        }
+        if(typeid(*(game->getMapPtr()->getObstacle(i)))== typeid(Mud))
+        {
+        game->getMapPtr()->getObstacle(i)->setHeight(mud->h);
+        game->getMapPtr()->getObstacle(i)->setWidth(mud->w);
+        SDL_BlitSurface(mud,NULL,screenSurface,&dst);
+        }
     }
+
+
+
+//    SDL_Rect docelowy;
+//    docelowy.w = sciana->w;
+//    docelowy.h = sciana->h;
+
+//    //std::cout<< "ok";
+//    for (int i=0; i<gra1->getMapaWsk()->getRozmiarMapyY(); i++)
+//    {
+//        docelowy.y = i*docelowy.h;
+//        for (int j=0; j<gra1->getMapaWsk()->getRozmiarMapyX(); j++)
+//        {
+//            docelowy.x = j*docelowy.w;
+
+//            if ( typeid(*(gra1->getMapaWsk()->getElementMapy(j,i))) == typeid (CSciana) )
+//            {
+//                SDL_BlitSurface( sciana, NULL, sdl_screen_surface, &docelowy );
+//            }
+//            else if (typeid(*(gra1->getMapaWsk()->getElementMapy(j,i))) == typeid (CWolnePole))
+//            {
+//                SDL_BlitSurface( wolne_pole, NULL, sdl_screen_surface, &docelowy );
+//            }
+//        }
+//    }
+
+
+
 }
 
 void GWindow::showCreatures()

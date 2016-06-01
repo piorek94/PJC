@@ -48,10 +48,12 @@ bool Board::loadBoard(std::string _pathBoard)
     {
         return false;
     }
-    int pomH,pomW,numOfObs,posX,posY;
+    int pomH,pomW,numOfObs,tmp,posX,posY;
     source >> pomW;
     source >> pomH;
-
+// albo bezposrednio tak
+// source >> Width;
+// source >> Height;
     setHeight(pomH);
     setWidth(pomW);
 
@@ -59,14 +61,26 @@ bool Board::loadBoard(std::string _pathBoard)
 
     for(int i=0;i<numOfObs;i++)
     {
-            Obstacle* obs=new Obstacle;
+            Obstacle* obs;
+            source >> tmp;
             source >> posX;
             source >> posY;
+       if(tmp==1)
+       {
+           obs = new Wall();
+       }
+       if(tmp==2)
+       {
+           obs = new Mud();
+       }
+       if(tmp==3)
+       {
+           obs = new Barbwire();
+       }
             obs->setX(posX);
             obs->setY(posY);
             addObstacle(obs);
     }
-
     source.close();
 
     return true;

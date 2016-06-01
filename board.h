@@ -3,7 +3,10 @@
 
 #include "isize.h"
 #include "creature.h"
-#include "obstacle.h"
+//#include "obstacle.h"
+#include "wall.h"
+#include "barbwire.h"
+#include "mud.h"
 #include <vector>
 
 class Board : public ISize

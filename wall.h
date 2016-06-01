@@ -6,6 +6,8 @@ class Wall : public Obstacle
 {
 public:
     Wall();
+    ~Wall();
+    virtual bool CanPass();
 };
 
 #endif // WALL_H
