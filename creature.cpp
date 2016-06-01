@@ -59,3 +59,43 @@ bool Creature::isDead()
         return false;
     }
 }
+
+int Creature::getX()
+{
+    return X;
+}
+
+int Creature::getY()
+{
+    return Y;
+}
+
+void Creature::setX(int _x)
+{
+    X=_x;
+}
+
+void Creature::setY(int _y)
+{
+    Y=_y;
+}
+
+int Creature::getWidth()
+{
+    return Width;
+}
+
+int Creature::getHeight()
+{
+    return Height;
+}
+
+void Creature::setWidth(int _width)
+{
+    Width=_width;
+}
+
+void Creature::setHeight(int _height)
+{
+    Height=_height;
+}

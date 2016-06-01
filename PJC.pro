@@ -13,7 +13,10 @@ SOURCES += main.cpp\
     board.cpp \
     player.cpp \
     gwindow.cpp \
-    game.cpp
+    game.cpp \
+    mud.cpp \
+    wall.cpp \
+    barbwire.cpp
 
 PKGCONFIG += sdl2
 CONFIG += link_pkgconfig
@@ -27,5 +30,8 @@ HEADERS  += \
     board.h \
     player.h \
     gwindow.h \
-    game.h
+    game.h \
+    mud.h \
+    wall.h \
+    barbwire.h
 

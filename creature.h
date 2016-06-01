@@ -20,16 +20,16 @@ public:
     virtual ~Creature();
     virtual void move()=0;
     virtual void rotate(double _angle)=0;
-    virtual int getX()=0;
-    virtual int getY()=0;
-    virtual void setX(int _x)=0;
-    virtual void setY(int _y)=0;
-    virtual int getWidth()=0;
-    virtual int getHeight()=0;
-    virtual void setWidth(int _width)=0;
-    virtual void setHeight(int _height)=0;
     virtual void shoot()=0;
     virtual void setWeapon()=0;
+    int getX();
+    int getY();
+    void setX(int _x);
+    void setY(int _y);
+    int getWidth();
+    int getHeight();
+    void setWidth(int _width);
+    void setHeight(int _height);
     bool isDead();
     int getHp();
     void setHp(int _hp);
@@ -40,5 +40,5 @@ public:
     void setSpeed(float _speed);
     float getSpeed();
 };
-
+//tutaj jeszcze kolizje przydałoby sie sprawdzac i tu mozna dac mape a w innych wywołuywac kontruktor tej klasy z mapa
 #endif // CREATURE_H
