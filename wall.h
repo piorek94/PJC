@@ -1,6 +1,6 @@
 #ifndef WALL_H
 #define WALL_H
-#include <obstacle.h>
+#include "obstacle.h"
 
 class Wall : public Obstacle
 {

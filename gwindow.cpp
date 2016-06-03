@@ -72,6 +72,11 @@ GWindow::~GWindow()
 
 void GWindow::timerUpdate()
 {
+    for (int i=0; i<game->getMapPtr()->getNumberOfCreature(); i++)
+    {
+        game->getMapPtr()->getCreature(i)->move();
+    }
+
     showBackground();
     showObstacles();
     showCreatures();
@@ -104,41 +109,13 @@ void GWindow::showObstacles()
         SDL_BlitSurface(mud,NULL,screenSurface,&dst);
         }
     }
-
-
-
-//    SDL_Rect docelowy;
-//    docelowy.w = sciana->w;
-//    docelowy.h = sciana->h;
-
-//    //std::cout<< "ok";
-//    for (int i=0; i<gra1->getMapaWsk()->getRozmiarMapyY(); i++)
-//    {
-//        docelowy.y = i*docelowy.h;
-//        for (int j=0; j<gra1->getMapaWsk()->getRozmiarMapyX(); j++)
-//        {
-//            docelowy.x = j*docelowy.w;
-
-//            if ( typeid(*(gra1->getMapaWsk()->getElementMapy(j,i))) == typeid (CSciana) )
-//            {
-//                SDL_BlitSurface( sciana, NULL, sdl_screen_surface, &docelowy );
-//            }
-//            else if (typeid(*(gra1->getMapaWsk()->getElementMapy(j,i))) == typeid (CWolnePole))
-//            {
-//                SDL_BlitSurface( wolne_pole, NULL, sdl_screen_surface, &docelowy );
-//            }
-//        }
-//    }
-
-
-
 }
 
 void GWindow::showCreatures()
 {
     SDL_Rect dts;
-    dts.x=300;
-    dts.y=350;
+    dts.x=0;
+    dts.y=60;
     SDL_BlitSurface(player,NULL,screenSurface,&dts);
 }
 

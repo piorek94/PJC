@@ -1,7 +1,7 @@
 #ifndef BARBWIRE_H
 #define BARBWIRE_H
-#include <obstacle.h>
-#include <creature.h>//?????
+#include "obstacle.h"
+#include "creature.h"//?????
 class Barbwire : public Obstacle
 {
 private:

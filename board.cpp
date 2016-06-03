@@ -7,7 +7,10 @@ Board::Board(std::string _plik)
 
 Board::~Board()
 {
-
+    for(int i=0;i<getNumberOfObstacle();i++)
+    {
+        delete getObstacle(i);
+    }
 }
 
 int Board::getHeight()
@@ -51,9 +54,6 @@ bool Board::loadBoard(std::string _pathBoard)
     int pomH,pomW,numOfObs,tmp,posX,posY;
     source >> pomW;
     source >> pomH;
-// albo bezposrednio tak
-// source >> Width;
-// source >> Height;
     setHeight(pomH);
     setWidth(pomW);
 

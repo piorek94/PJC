@@ -7,6 +7,7 @@
 class Creature : public IMobile
 {
 protected:
+    Board* Map;
     int Hp;
     int MaxHp;
     int X;
@@ -16,12 +17,13 @@ protected:
     std::string Name;
     float Speed;
 public:
-    Creature();
+    Creature(Board *_map);
     virtual ~Creature();
     virtual void move()=0;
-    virtual void rotate(double _angle)=0;
+    virtual void rotate(float _angle)=0;
     virtual void shoot()=0;
     virtual void setWeapon()=0;
+    bool checkCollision(Board *map);
     int getX();
     int getY();
     void setX(int _x);
@@ -41,4 +43,6 @@ public:
     float getSpeed();
 };
 //tutaj jeszcze kolizje przydałoby sie sprawdzac i tu mozna dac mape a w innych wywołuywac kontruktor tej klasy z mapa
+//mapa jako pole, ewentualnie dac jako argument funkcji poruszanie, która
+//bedzie przekazywała ten argument do funkcji kolizji- góra, doł, lewo, prawo
 #endif // CREATURE_H

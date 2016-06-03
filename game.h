@@ -1,23 +1,19 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <board.h>
-#include <obstacle.h>
-#include <player.h>
+#include "board.h"
+//#include "player.h"
 class Game
 {
 public:
     Game();
     ~Game();
     Board *getMapPtr();
-//    int getNumberOfCreatures();
-//    void setNumberOfCreatures();
-//    Creature* getCreaturePtr (int numer);
+    void setNumberOfEnemies();
 
 private:
     Board *map;
-//    std::vector<Creature*> osoby;
-//    int numberOfCreatures;
+    int numberOfEnemies;
 
 };
 //chyba w konstruktorze bede tworzył playera jako jednego i dodawał do vektora a reszte(przeciwnicy) wprowadzał

@@ -2,8 +2,8 @@
 #define GWINDOW_H
 
 #include <SDL.h>
-#include <SDL2/SDL_image.h>
-#include <game.h>
+//#include <SDL2/SDL_image.h>
+#include "game.h"
 
 class GWindow
 {

@@ -3,10 +3,16 @@
 Game::Game()
 {
     map = new Board("mapa.txt");
+    map->addCreature(new Player(map));
+    numberOfEnemies=0;
 }
 
 Game::~Game()
-{
+{    
+    for(int i=0;i<map->getNumberOfCreature();i++)
+    {
+        delete (map->getCreature(i));
+    }
     delete map;
 }
 
@@ -15,21 +21,10 @@ Board* Game::getMapPtr()
     return map;
 }
 
-//int Game::getNumberOfCreatures()
-//{
-//    return numberOfCreatures;
-//}
-
-//Creature *Game::getCreaturePtr(int numer)
-//{
-//    return osoby.at(numer);
-//}
-
-//void Game::setNumberOfCreatures(int _num)
-//{
-//    numberOfCreatures=_num;
-//    for(int i=0; i<=numberOfCreatures;i++)
-//    {
-//        map->addCreature(new Player());//ale tu bedzie new Enemy
-//    }
-//}
+void Game::setNumberOfEnemies()
+{
+    for(int i=0;i<numberOfEnemies;i++)
+    {
+       // map->addCreature();
+    }
+}

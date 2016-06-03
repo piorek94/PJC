@@ -3,12 +3,13 @@
 
 Uint32 callback( Uint32 interval, void* param );
 GWindow* mainWindow;
+SDL_TimerID timer;
+//const Uint8 * keystate = SDL_GetKeyboardState( NULL ); do ruchu
 int main( int argc, char* args[] )
-{
-    SDL_TimerID timer;
+{    
     srand(time(0));
     mainWindow = new GWindow();
-    timer = SDL_AddTimer( 30, callback, NULL );
+    timer = SDL_AddTimer(50, callback, NULL );
     SDL_Event e;
     bool game=1;
     while (game)

@@ -3,7 +3,7 @@
 
 #include "isize.h"
 #include "creature.h"
-//#include "obstacle.h"
+#include "player.h"
 #include "wall.h"
 #include "barbwire.h"
 #include "mud.h"
@@ -21,6 +21,7 @@ public:
     Creature* getCreature(int c);
     Obstacle* getObstacle(int o);
     void addCreature(Creature* _creature);
+    void deleteCreature(Creature* _creature);//sprawdzenie bo nie zmniejsza wektora
     void addObstacle(Obstacle* _obstacle);
     int getNumberOfObstacle();
     int getNumberOfCreature();

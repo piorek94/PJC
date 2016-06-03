@@ -1,8 +1,8 @@
 #include "creature.h"
 
-Creature::Creature()
+Creature::Creature(Board *_map)
 {
-
+    Map=_map;
 }
 
 Creature::~Creature()
@@ -98,4 +98,9 @@ void Creature::setWidth(int _width)
 void Creature::setHeight(int _height)
 {
     Height=_height;
+}
+
+bool Creature::checkCollision(Board *map)
+{
+    return true;
 }

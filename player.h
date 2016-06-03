@@ -10,11 +10,12 @@ private:
 //    vector <TypeWeapon*> Weapons;
 //    TypeWeapon ActuallWeapon;
 public:
-    Player();
+    Player(Board* _map);
     ~Player();
 //    void setActuallWeapon(TypeWeapon* _typeWeapon);
     void virtual move();
     void virtual shoot();
     void virtual rotate(float _angle);
+    virtual void setWeapon();
 };
 #endif // PLAYER_H

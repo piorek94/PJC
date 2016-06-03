@@ -1,6 +1,7 @@
 #include "player.h"
 
-Player::Player()
+Player::Player(Board *_map)
+    :Creature(_map)
 {
 
 }
@@ -21,6 +22,11 @@ void Player::shoot()
 }
 
 void Player::rotate(float _angle)
+{
+
+}
+
+void Player::setWeapon()
 {
 
 }

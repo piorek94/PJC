@@ -48,8 +48,3 @@ void Obstacle::setHeight(int _height)
 {
     Height=_height;
 }
-
-bool Obstacle::CanPass()
-{
-    return false;
-}

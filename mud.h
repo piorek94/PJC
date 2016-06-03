@@ -1,7 +1,7 @@
 #ifndef MUD_H
 #define MUD_H
-#include<obstacle.h>
-#include<creature.h>
+#include "obstacle.h"
+#include "creature.h"
 
 class Mud : public Obstacle
 {
