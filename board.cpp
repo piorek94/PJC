@@ -7,9 +7,11 @@ Board::Board(std::string _plik)
 
 Board::~Board()
 {
-    for(int i=0;i<getNumberOfObstacle();i++)
+    for(size_t i=0;i<obstacles.size();i++)
     {
         delete getObstacle(i);
+        //getObstacle(i)=NULL;
+        //NULL JAK ZROBIC!!!
     }
 }
 
@@ -67,18 +69,16 @@ bool Board::loadBoard(std::string _pathBoard)
             source >> posY;
        if(tmp==1)
        {
-           obs = new Wall();
+           obs = new Wall(posX,posY);
        }
        if(tmp==2)
        {
-           obs = new Mud();
+           obs = new Mud(posX,posY);
        }
        if(tmp==3)
        {
-           obs = new Barbwire();
+           obs = new Barbwire(posX,posY);
        }
-            obs->setX(posX);
-            obs->setY(posY);
             addObstacle(obs);
     }
     source.close();
@@ -104,4 +104,14 @@ int Board::getNumberOfObstacle()
 int Board::getNumberOfCreature()
 {
     return (int)creatures.size();
+}
+
+void Board::clearCreature()
+{
+    creatures.clear();
+}
+
+void Board::clearObstacle()
+{
+    obstacles.clear();
 }

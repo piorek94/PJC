@@ -1,8 +1,9 @@
 #include "obstacle.h"
 
-Obstacle::Obstacle()
+Obstacle::Obstacle(int _x, int _y)
 {
-
+    X=_x;
+    Y=_y;
 }
 Obstacle::~Obstacle()
 {

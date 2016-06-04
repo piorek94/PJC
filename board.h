@@ -2,12 +2,12 @@
 #define BOARD_H
 
 #include "isize.h"
-#include "creature.h"
 #include "player.h"
 #include "wall.h"
 #include "barbwire.h"
 #include "mud.h"
 #include <vector>
+#include <iostream>
 
 class Board : public ISize
 {
@@ -21,8 +21,9 @@ public:
     Creature* getCreature(int c);
     Obstacle* getObstacle(int o);
     void addCreature(Creature* _creature);
-    void deleteCreature(Creature* _creature);//sprawdzenie bo nie zmniejsza wektora
     void addObstacle(Obstacle* _obstacle);
+    void clearCreature();
+    void clearObstacle();
     int getNumberOfObstacle();
     int getNumberOfCreature();
     Board(std::string _plik);

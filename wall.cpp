@@ -1,6 +1,7 @@
 #include "wall.h"
 
-Wall::Wall()
+Wall::Wall(int _x, int _y)
+    : Obstacle(_x,_y)
 {
 
 }

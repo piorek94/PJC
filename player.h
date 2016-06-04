@@ -2,7 +2,12 @@
 #define PLAYER_H
 
 #include "creature.h"
-#include <vector>
+//#include <vector>
+
+extern bool move_up;
+extern bool move_down;
+extern bool move_right;
+extern bool move_left;
 
 class Player : public Creature
 {

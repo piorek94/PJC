@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(Board *_map)
+Player::Player(Board* _map)
     :Creature(_map)
 {
 
@@ -13,7 +13,22 @@ Player::~Player()
 
 void Player::move()
 {
-
+    if (move_up && !checkCollisionUp())
+    {
+        Y-=Speed;
+    }
+    if (move_right && !checkCollisionRight())
+    {
+        X+=Speed;
+    }
+    if (move_down && !checkCollisionDown())
+    {
+        Y+=Speed;
+    }
+    if (move_left && !checkCollisionLeft())
+    {
+        X-=Speed;
+    }
 }
 
 void Player::shoot()

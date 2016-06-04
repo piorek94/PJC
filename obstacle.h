@@ -11,8 +11,8 @@ protected:
     int Width;
     int Height;
 public:
-    virtual bool CanPass()=0;//after add inherit class it will be pure virtual, it could be only a data not method
-    Obstacle();
+    virtual bool CanPass()=0;
+    Obstacle(int _x, int _y);
     ~Obstacle();
     int getX();
     int getY();

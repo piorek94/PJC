@@ -1,7 +1,6 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 
-#include <iostream>
 #include "imobile.h"
 
 class Creature : public IMobile
@@ -14,8 +13,7 @@ protected:
     int Y;
     int Height;
     int Width;
-    std::string Name;
-    float Speed;
+    int Speed;
 public:
     Creature(Board *_map);
     virtual ~Creature();
@@ -23,7 +21,10 @@ public:
     virtual void rotate(float _angle)=0;
     virtual void shoot()=0;
     virtual void setWeapon()=0;
-    bool checkCollision(Board *map);
+    virtual bool checkCollisionUp();
+    virtual bool checkCollisionDown();
+    virtual bool checkCollisionRight();
+    virtual bool checkCollisionLeft();
     int getX();
     int getY();
     void setX(int _x);
@@ -37,10 +38,8 @@ public:
     void setHp(int _hp);
     int getMaxHp();
     void setMaxHp(int _maxhp);
-    void setName(std::string _name);
-    std::string getName();
-    void setSpeed(float _speed);
-    float getSpeed();
+    void setSpeed(int _speed);
+    int getSpeed();
 };
 //tutaj jeszcze kolizje przydałoby sie sprawdzac i tu mozna dac mape a w innych wywołuywac kontruktor tej klasy z mapa
 //mapa jako pole, ewentualnie dac jako argument funkcji poruszanie, która

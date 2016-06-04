@@ -114,11 +114,24 @@ void GWindow::showObstacles()
 void GWindow::showCreatures()
 {
     SDL_Rect dts;
-    dts.x=0;
-    dts.y=60;
-    SDL_BlitSurface(player,NULL,screenSurface,&dts);
+    for(int i=0;i<game->getMapPtr()->getNumberOfCreature();i++)
+    {
+        dts.x=game->getMapPtr()->getCreature(i)->getX();
+        dts.y=game->getMapPtr()->getCreature(i)->getY();
+        if(typeid(*(game->getMapPtr()->getCreature(i)))==typeid(Player))
+        {
+            game->getMapPtr()->getCreature(i)->setHeight(player->h);
+            game->getMapPtr()->getCreature(i)->setWidth(player->w);
+            SDL_BlitSurface(player,NULL,screenSurface,&dts);
+        }
+//        if(typeid(*(game->getMapPtr()->getCreature(i)))==typeid(Enemy))
+//        {
+//            game->getMapPtr()->getCreature(i)->setHeight(enemy->h);
+//            game->getMapPtr()->getCreature(i)->setWidth(enemy->w);
+//            SDL_BlitSurface(enemy,NULL,screenSurface,&dts);
+//        }
+    }
 }
-
 void GWindow::showBackground()
 {
     SDL_BlitSurface( background, NULL, screenSurface, NULL );

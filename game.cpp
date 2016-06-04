@@ -13,6 +13,7 @@ Game::~Game()
     {
         delete (map->getCreature(i));
     }
+    map->clearCreature();
     delete map;
 }
 
@@ -25,6 +26,6 @@ void Game::setNumberOfEnemies()
 {
     for(int i=0;i<numberOfEnemies;i++)
     {
-       // map->addCreature();
+       // map->addCreature(new Enemy(map));
     }
 }
