@@ -124,12 +124,12 @@ void GWindow::showCreatures()
             game->getMapPtr()->getCreature(i)->setWidth(player->w);
             SDL_BlitSurface(player,NULL,screenSurface,&dts);
         }
-//        if(typeid(*(game->getMapPtr()->getCreature(i)))==typeid(Enemy))
-//        {
-//            game->getMapPtr()->getCreature(i)->setHeight(enemy->h);
-//            game->getMapPtr()->getCreature(i)->setWidth(enemy->w);
-//            SDL_BlitSurface(enemy,NULL,screenSurface,&dts);
-//        }
+        if(typeid(*(game->getMapPtr()->getCreature(i)))==typeid(Enemy))
+        {
+            game->getMapPtr()->getCreature(i)->setHeight(enemy->h);
+            game->getMapPtr()->getCreature(i)->setWidth(enemy->w);
+            SDL_BlitSurface(enemy,NULL,screenSurface,&dts);
+        }
     }
 }
 void GWindow::showBackground()

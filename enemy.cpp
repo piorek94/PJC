@@ -1,61 +1,65 @@
-#include "player.h"
+#include "enemy.h"
+#include <ctime>
+#include <cstdlib>
 
-Player::Player(Board* _map)
-    :Creature(_map)
+
+Enemy::Enemy(Board *_map)
+    : Creature(_map)
 {
 
 }
 
-Player::~Player()
+Enemy::~Enemy()
 {
 
 }
 
-void Player::move()
+void Enemy::shoot()
 {
-    if(move_up)
+
+}
+
+void Enemy::rotate(float _angle)
+{
+
+}
+
+void Enemy::setWeapon()
+{
+
+}
+
+void Enemy::move()
+{
+    srand(time(0));
+    int a=rand()%4;
+
+    if (a==up)
     {
         if(!checkCollisionUp())
         {
             Y-=Speed;
         }
     }
-
-    if(move_right)
+    if (a==right)
     {
         if(!checkCollisionRight())
         {
             X+=Speed;
         }
     }
-    if(move_down)
+    if (a==down)
     {
         if(!checkCollisionDown())
         {
             Y+=Speed;
         }
     }
-
-    if (move_left)
+    if (a==left)
     {
         if(!checkCollisionLeft())
         {
             X-=Speed;
         }
     }
-}
-
-void Player::shoot()
-{
-
-}
-
-void Player::rotate(float _angle)
-{
-
-}
-
-void Player::setWeapon()
-{
-
 }

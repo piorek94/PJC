@@ -4,7 +4,7 @@
 Creature::Creature(Board *_map)
 {
     Map=_map;
-    setSpeed(1);
+    setSpeed(2);
     //tutaj musi byc cos co samo bedzie ustawiało ludka
     X=10;
     Y=70;

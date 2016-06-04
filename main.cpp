@@ -1,4 +1,3 @@
-#include <ctime>
 #include "gwindow.h"
 
 Uint32 callback( Uint32 interval, void* param );
@@ -14,9 +13,8 @@ const Uint8 * keystate = SDL_GetKeyboardState( NULL );
 
 int main( int argc, char* args[] )
 {    
-    srand(time(0));
     mainWindow = new GWindow();
-    timer = SDL_AddTimer(70, callback, NULL );
+    timer = SDL_AddTimer(60, callback, NULL );
     SDL_Event e;
     bool game=1;
     while (game)

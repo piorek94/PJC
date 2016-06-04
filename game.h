@@ -9,7 +9,7 @@ public:
     Game();
     ~Game();
     Board *getMapPtr();
-    void setNumberOfEnemies();
+    void setEnemies();
 
 private:
     Board *map;

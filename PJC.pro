@@ -16,7 +16,8 @@ SOURCES += main.cpp\
     game.cpp \
     mud.cpp \
     wall.cpp \
-    barbwire.cpp
+    barbwire.cpp \
+    enemy.cpp
 
 PKGCONFIG += sdl2
 CONFIG += link_pkgconfig
@@ -33,5 +34,6 @@ HEADERS  += \
     game.h \
     mud.h \
     wall.h \
-    barbwire.h
+    barbwire.h \
+    enemy.h
 
