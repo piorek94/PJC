@@ -2,7 +2,6 @@
 #define OBSTACLE_H
 
 #include "iobject.h"
-
 class Obstacle : public IObject
 {
 protected:

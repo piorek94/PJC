@@ -16,14 +16,14 @@ int main( int argc, char* args[] )
     mainWindow = new GWindow();
     timer = SDL_AddTimer(60, callback, NULL );
     SDL_Event e;
-    bool game=1;
-    while (game)
+    bool quit=false;
+    while (!quit)
     {
         while ((SDL_PollEvent(&e)) != 0)
         {
             if (e.type == SDL_QUIT)
             {
-                game = false;
+                quit = true;
             }
         }
     }

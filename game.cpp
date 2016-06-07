@@ -25,8 +25,16 @@ Board* Game::getMapPtr()
 
 void Game::setEnemies()
 {
+    int x=40;
+    int y=100;
+    int c=20;
     for(int i=0;i<numberOfEnemies;i++)
     {
-        map->addCreature(new Enemy(map));
+        Enemy *enemy=new Enemy(map);
+        x+=c;
+        y+=c;
+        enemy->setX(x);
+        enemy->setY(y);
+        map->addCreature(enemy);
     }
 }

@@ -116,6 +116,20 @@ bool Creature::checkCollisionUp()
             }
         }
     }
+    for(int i=0; i<Map->getNumberOfCreature();i++)
+    {
+        if(this!=Map->getCreature(i))
+        {
+            int TopC=Map->getCreature(i)->getY();
+            int BotC=TopC+Map->getCreature(i)->getHeight();
+            int LefC=Map->getCreature(i)->getX();
+            int RigC=LefC+Map->getCreature(i)->getWidth();
+            if((Y-Speed<=BotC && Y-Speed>=TopC) && !(X+Width<=LefC || X>=RigC))
+            {
+                return true;
+            }
+        }
+    }
     return collision;
 }
 
@@ -131,6 +145,20 @@ bool Creature::checkCollisionDown()
             int LefO=Map->getObstacle(i)->getX();
             int RigO=LefO+Map->getObstacle(i)->getWidth();
             if(((Y+Height+Speed>=TopO && Y+Height+Speed<=BotO) && !(X+Width<=LefO || X>=RigO)) || (Y+Height+Speed>=Map->getHeight()))
+            {
+                return true;
+            }
+        }
+    }
+    for(int i=0; i<Map->getNumberOfCreature();i++)
+    {
+        if(this!=Map->getCreature(i))
+        {
+            int TopC=Map->getCreature(i)->getY();
+            int BotC=TopC+Map->getCreature(i)->getHeight();
+            int LefC=Map->getCreature(i)->getX();
+            int RigC=LefC+Map->getCreature(i)->getWidth();
+            if((Y+Height+Speed>=TopC && Y+Height+Speed<=BotC) && !(X+Width<=LefC || X>=RigC))
             {
                 return true;
             }
@@ -156,6 +184,20 @@ bool Creature::checkCollisionLeft()
             }
         }
     }
+    for(int i=0; i<Map->getNumberOfCreature();i++)
+    {
+        if(this!=Map->getCreature(i))
+        {
+            int TopC=Map->getCreature(i)->getY();
+            int BotC=TopC+Map->getCreature(i)->getHeight();
+            int LefC=Map->getCreature(i)->getX();
+            int RigC=LefC+Map->getCreature(i)->getWidth();
+            if((X-Speed<=RigC && X-Speed>=LefC) && !(Y+Height<=TopC || Y>=BotC))
+            {
+                return true;
+            }
+        }
+    }
     return collision;
 
 }bool Creature::checkCollisionRight()
@@ -170,6 +212,20 @@ bool Creature::checkCollisionLeft()
             int LefO=Map->getObstacle(i)->getX();
             int RigO=LefO+Map->getObstacle(i)->getWidth();
             if(((X+Width+Speed>=LefO && X+Width+Speed<=RigO) && !(Y+Height<=TopO || Y>=BotO)) || (X+Width+Speed>=Map->getWidth()))
+            {
+                return true;
+            }
+        }
+    }
+    for(int i=0; i<Map->getNumberOfCreature();i++)
+    {
+        if(this!=Map->getCreature(i))
+        {
+            int TopC=Map->getCreature(i)->getY();
+            int BotC=TopC+Map->getCreature(i)->getHeight();
+            int LefC=Map->getCreature(i)->getX();
+            int RigC=LefC+Map->getCreature(i)->getWidth();
+            if((X+Width+Speed>=LefC && X+Width+Speed<=RigC) && !(Y+Height<=TopC || Y>=BotC))
             {
                 return true;
             }

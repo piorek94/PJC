@@ -1,6 +1,5 @@
 #include "enemy.h"
-#include <ctime>
-#include <cstdlib>
+
 
 
 Enemy::Enemy(Board *_map)
@@ -29,10 +28,15 @@ void Enemy::setWeapon()
 
 }
 
-void Enemy::move()
+int Enemy::direction()
 {
     srand(time(0));
-    int a=rand()%4;
+    return rand()%4;
+}
+
+void Enemy::move()
+{
+    int a=direction();
 
     if (a==up)
     {
