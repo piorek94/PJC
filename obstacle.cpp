@@ -4,6 +4,8 @@ Obstacle::Obstacle(int _x, int _y)
 {
     X=_x;
     Y=_y;
+//    Height=60;//jesli textury
+//    Width=60;//jesli textury
 }
 Obstacle::~Obstacle()
 {

@@ -26,6 +26,7 @@ int main( int argc, char* args[] )
                 quit = true;
             }
         }
+//        mainWindow->UpdateImage(); //jesli textury
     }
     SDL_RemoveTimer(timer);
     delete mainWindow;
