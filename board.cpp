@@ -1,5 +1,6 @@
 #include "board.h"
 #include <fstream>
+
 Board::Board(std::string _plik)
 {
     this->loadBoard(_plik);

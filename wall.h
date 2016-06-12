@@ -5,7 +5,7 @@
 class Wall : public Obstacle
 {
 public:
-    Wall(int _x, int _y);
+    Wall(float _x, float _y);
     ~Wall();
     virtual bool CanPass();
 };

@@ -3,8 +3,8 @@
 Game::Game()
 {
     map = new Board("mapa.txt");
-    map->addCreature(new Player(map));
-    numberOfEnemies=1;
+    map->addCreature(new Player(map,2,200));
+    numberOfEnemies=2;
     setEnemies();
 }
 
@@ -25,16 +25,8 @@ Board* Game::getMapPtr()
 
 void Game::setEnemies()
 {
-    int x=40;
-    int y=100;
-    int c=20;
     for(int i=0;i<numberOfEnemies;i++)
     {
-        Enemy *enemy=new Enemy(map);
-        x+=c;
-        y+=c;
-        enemy->setX(x);
-        enemy->setY(y);
-        map->addCreature(enemy);
+        map->addCreature(new Enemy(map,1,100));
     }
 }

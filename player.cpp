@@ -1,7 +1,7 @@
 #include "player.h"
 
-Player::Player(Board* _map)
-    :Creature(_map)
+Player::Player(Board *_map, float _speed, int _maxHp)
+    :Creature(_map,_speed,_maxHp)
 {
 
 }
@@ -11,11 +11,11 @@ Player::~Player()
 
 }
 
-void Player::move()
+void Player::move(Board *_map)
 {
     if(move_up)
     {
-        if(!checkCollisionUp())
+        if(!checkCollisionUp(_map))
         {
             Y-=Speed;
         }
@@ -23,14 +23,14 @@ void Player::move()
 
     if(move_right)
     {
-        if(!checkCollisionRight())
+        if(!checkCollisionRight(_map))
         {
             X+=Speed;
         }
     }
     if(move_down)
     {
-        if(!checkCollisionDown())
+        if(!checkCollisionDown(_map))
         {
             Y+=Speed;
         }
@@ -38,7 +38,7 @@ void Player::move()
 
     if (move_left)
     {
-        if(!checkCollisionLeft())
+        if(!checkCollisionLeft(_map))
         {
             X-=Speed;
         }

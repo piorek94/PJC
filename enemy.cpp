@@ -1,9 +1,7 @@
 #include "enemy.h"
 
-
-
-Enemy::Enemy(Board *_map)
-    : Creature(_map)
+Enemy::Enemy(Board *_map, float _speed, int _maxHp)
+    :Creature(_map,_speed, _maxHp)
 {
 
 }
@@ -34,34 +32,34 @@ int Enemy::direction()
     return rand()%4;
 }
 
-void Enemy::move()
+void Enemy::move(Board *_map)
 {
     int a=direction();
 
     if (a==up)
     {
-        if(!checkCollisionUp())
+        if(!checkCollisionUp(_map))
         {
             Y-=Speed;
         }
     }
     if (a==right)
     {
-        if(!checkCollisionRight())
+        if(!checkCollisionRight(_map))
         {
             X+=Speed;
         }
     }
     if (a==down)
     {
-        if(!checkCollisionDown())
+        if(!checkCollisionDown(_map))
         {
             Y+=Speed;
         }
     }
     if (a==left)
     {
-        if(!checkCollisionLeft())
+        if(!checkCollisionLeft(_map))
         {
             X-=Speed;
         }

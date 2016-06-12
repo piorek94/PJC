@@ -13,20 +13,33 @@ const Uint8 * keystate = SDL_GetKeyboardState( NULL );
 
 int main( int argc, char* args[] )
 {    
-    mainWindow = new GWindow();
-    timer = SDL_AddTimer(60, callback, NULL );
-    SDL_Event e;
-    bool quit=false;
-    while (!quit)
+    mainWindow=new GWindow();
+    if(!mainWindow->init())
     {
-        while ((SDL_PollEvent(&e)) != 0)
+        std::cout<<"Failed to initialize!\n";
+    }
+    else
+    {
+        if(!mainWindow->loadMedia())
         {
-            if (e.type == SDL_QUIT)
+            std::cout<<"Failed to load media!\n";
+        }
+        else
+        {
+            timer = SDL_AddTimer(60, callback, NULL);
+            bool quit=false;
+            SDL_Event e;
+            while (!quit)
             {
-                quit = true;
+                while ((SDL_PollEvent(&e)) != 0)
+                {
+                    if (e.type == SDL_QUIT)
+                    {
+                        quit = true;
+                    }
+                }
             }
         }
-//        mainWindow->UpdateImage(); //jesli textury
     }
     SDL_RemoveTimer(timer);
     delete mainWindow;

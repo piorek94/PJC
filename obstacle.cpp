@@ -1,33 +1,33 @@
 #include "obstacle.h"
 
-Obstacle::Obstacle(int _x, int _y)
+Obstacle::Obstacle(float _x, float _y)
 {
     X=_x;
     Y=_y;
-//    Height=60;//jesli textury
-//    Width=60;//jesli textury
+    Height=60;//jesli textury
+    Width=60;//jesli textury
 }
 Obstacle::~Obstacle()
 {
 
 }
 
-int Obstacle::getX()
+float Obstacle::getX()
 {
     return X;
 }
 
-int Obstacle::getY()
+float Obstacle::getY()
 {
     return Y;
 }
 
-void Obstacle::setX(int _x)
+void Obstacle::setX(float _x)
 {
     X=_x;
 }
 
-void Obstacle::setY(int _y)
+void Obstacle::setY(float _y)
 {
     Y=_y;
 }

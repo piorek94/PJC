@@ -5,18 +5,18 @@
 class Obstacle : public IObject
 {
 protected:
-    int X;
-    int Y;
+    float X;
+    float Y;
     int Width;
     int Height;
 public:
     virtual bool CanPass()=0;
-    Obstacle(int _x, int _y);
+    Obstacle(float _x, float _y);
     ~Obstacle();
-    int getX();
-    int getY();
-    void setX(int _x);
-    void setY(int _y);
+    float getX();
+    float getY();
+    void setX(float _x);
+    void setY(float _y);
     int getWidth();
     int getHeight();
     void setWidth(int _width);

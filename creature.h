@@ -2,33 +2,35 @@
 #define CREATURE_H
 
 #include "imobile.h"
+#include <ctime>
+#include <cstdlib>
 
 class Creature : public IMobile
 {
 protected:
-    Board* Map;
     int Hp;
     int MaxHp;
-    int X;
-    int Y;
+    float X;
+    float Y;
     int Height;
     int Width;
-    int Speed;
+    float Speed;
+    bool checkCollisionUp(Board *_map);
+    bool checkCollisionDown(Board *_map);
+    bool checkCollisionRight(Board *_map);
+    bool checkCollisionLeft(Board *_map);
 public:
-    Creature(Board *_map);
+    Creature(Board *_map, float _speed, int _maxHp);
     virtual ~Creature();
-    virtual void move()=0;
+    virtual void move(Board *_map)=0;
     virtual void rotate(float _angle)=0;
     virtual void shoot()=0;
     virtual void setWeapon()=0;
-    virtual bool checkCollisionUp();
-    virtual bool checkCollisionDown();
-    virtual bool checkCollisionRight();
-    virtual bool checkCollisionLeft();
-    int getX();
-    int getY();
-    void setX(int _x);
-    void setY(int _y);
+    void setPosition(Board *_map);
+    float getX();
+    float getY();
+    void setX(float _x);
+    void setY(float _y);
     int getWidth();
     int getHeight();
     void setWidth(int _width);
@@ -38,10 +40,9 @@ public:
     void setHp(int _hp);
     int getMaxHp();
     void setMaxHp(int _maxhp);
-    void setSpeed(int _speed);
-    int getSpeed();
+    void setSpeed(float _speed);
+    float getSpeed();
+
 };
-//tutaj jeszcze kolizje przydałoby sie sprawdzac i tu mozna dac mape a w innych wywołuywac kontruktor tej klasy z mapa
-//mapa jako pole, ewentualnie dac jako argument funkcji poruszanie, która
-//bedzie przekazywała ten argument do funkcji kolizji- góra, doł, lewo, prawo
+
 #endif // CREATURE_H

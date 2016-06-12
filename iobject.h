@@ -8,10 +8,10 @@ class IObject : public ISize
 public:
     IObject();
     virtual ~IObject();
-    virtual int getX()=0;
-    virtual int getY()=0;
-    virtual void setX(int _x)=0;
-    virtual void setY(int _y)=0;
+    virtual float getX()=0;
+    virtual float getY()=0;
+    virtual void setX(float _x)=0;
+    virtual void setY(float _y)=0;
     virtual int getWidth()=0;
     virtual int getHeight()=0;
     virtual void setWidth(int _width)=0;
