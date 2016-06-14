@@ -2,6 +2,7 @@
 #define OBSTACLE_H
 
 #include "iobject.h"
+class Creature;
 class Obstacle : public IObject
 {
 protected:
@@ -21,6 +22,7 @@ public:
     int getHeight();
     void setWidth(int _width);
     void setHeight(int _height);
+    virtual void affect(Creature *_creature)=0;
 };
 
 #endif // OBSTACLE_H

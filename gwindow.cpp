@@ -60,6 +60,7 @@ void GWindow::timerUpdate()
     for (int i=0; i<game->getMapPtr()->getNumberOfCreature(); i++)
     {
         game->getMapPtr()->getCreature(i)->move(game->getMapPtr());
+        game->getMapPtr()->getCreature(i)->checkField(game->getMapPtr());
     }
 
     showBackground();
@@ -109,8 +110,25 @@ void GWindow::showCreatures()
         {
             SDL_BlitScaled(enemy,NULL,screenSurface,&dts);
         }
+        showHp(game->getMapPtr()->getCreature(i));
     }
 }
+
+void GWindow::showHp(Creature *_creature)
+{
+    SDL_Rect max,current;
+    max.x=_creature->getX();
+    max.w=_creature->getWidth();
+    max.y=_creature->getY()-8;
+    max.h=7;
+    SDL_FillRect(screenSurface,&max,SDL_MapRGB(screenSurface->format, 0, 0, 0));
+    current.x=max.x+1;
+    current.y=max.y+1;
+    current.h=max.h-2;
+    current.w=((max.w*_creature->getHp())/_creature->getMaxHp())-2;
+    SDL_FillRect(screenSurface,&current,SDL_MapRGB(screenSurface->format, 255, 0, 0));
+}
+
 void GWindow::showBackground()
 {
     SDL_BlitScaled( background, NULL, screenSurface, NULL );
@@ -121,8 +139,8 @@ bool  GWindow::loadMedia()
     bool success = true;
     background=loadSurface("trawa.bmp");
     wall =loadSurface("wall.bmp");
-    player=loadSurface("player.bmp");
-    enemy=loadSurface("enemy.bmp");
+    player=loadSurface("soilder.bmp");
+    enemy=loadSurface("enemy1.bmp");
     mud = loadSurface("mud.bmp");
     barbwire = loadSurface("barbwire.bmp");
 

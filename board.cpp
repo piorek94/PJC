@@ -11,9 +11,8 @@ Board::~Board()
     for(size_t i=0;i<obstacles.size();i++)
     {
         delete getObstacle(i);
-        //getObstacle(i)=NULL;
-        //NULL JAK ZROBIC!!!
     }
+    clearObstacle();
 }
 
 int Board::getHeight()
@@ -74,11 +73,11 @@ bool Board::loadBoard(std::string _pathBoard)
        }
        if(tmp==2)
        {
-           obs = new Mud(posX,posY);
+           obs = new Mud(posX,posY,1);
        }
        if(tmp==3)
        {
-           obs = new Barbwire(posX,posY);
+           obs = new Barbwire(posX,posY,1);
        }
             addObstacle(obs);
     }

@@ -20,6 +20,7 @@ private:
     void showObstacles();
     void showCreatures();
     void showBackground();
+    void showHp(Creature *_creature);
 public:
     bool init();
     bool loadMedia();

@@ -4,11 +4,12 @@
 
 Creature::Creature(Board *_map, float _speed, int _maxHp)
 {
-    setSpeed(_speed);
+    setMaxSpeed(_speed);
+    Speed=MaxSpeed;
     MaxHp=_maxHp;
     Hp=_maxHp;
-    Height=30;//jesli textury
-    Width=30;//jesli textury
+    Height=30;
+    Width=20;
     setPosition(_map);
 }
 
@@ -39,16 +40,26 @@ void Creature::setMaxHp(int _maxhp)
 
 void Creature::setSpeed(float _speed)
 {
-    if(_speed<0)
-    {
-        _speed=-_speed;
-    }
     Speed=_speed;
 }
 
 float Creature::getSpeed()
 {
     return Speed;
+}
+
+void Creature::setMaxSpeed(float _maxSpeed)
+{
+    if(_maxSpeed<0)
+    {
+        _maxSpeed=-_maxSpeed;
+    }
+    MaxSpeed=_maxSpeed;
+}
+
+float Creature::getMaxSpeed()
+{
+    return MaxSpeed;
 }
 
 bool Creature::isDead()
@@ -103,7 +114,6 @@ void Creature::setHeight(int _height)
 
 bool Creature::checkCollisionUp(Board *_map)
 {
-    bool collision=false;
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
         if(_map->getObstacle(i)->CanPass()==false)
@@ -132,12 +142,11 @@ bool Creature::checkCollisionUp(Board *_map)
             }
         }
     }
-    return collision;
+    return false;
 }
 
 bool Creature::checkCollisionDown(Board *_map)
 {
-    bool collision=false;
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
         if(_map->getObstacle(i)->CanPass()==false)
@@ -166,12 +175,11 @@ bool Creature::checkCollisionDown(Board *_map)
             }
         }
     }
-    return collision;
+    return false;
 }
 
 bool Creature::checkCollisionLeft(Board *_map)
 {
-    bool collision=false;
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
         if(_map->getObstacle(i)->CanPass()==false)
@@ -200,13 +208,12 @@ bool Creature::checkCollisionLeft(Board *_map)
             }
         }
     }
-    return collision;
+    return false;
 }
 
 
 bool Creature::checkCollisionRight(Board *_map)
 {
-    bool collision=false;
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
         if(_map->getObstacle(i)->CanPass()==false)
@@ -229,14 +236,74 @@ bool Creature::checkCollisionRight(Board *_map)
             int BotC=TopC+_map->getCreature(i)->getHeight();
             int LefC=_map->getCreature(i)->getX();
             int RigC=LefC+_map->getCreature(i)->getWidth();
-            if((X+Width+Speed>=LefC && X+Width+Speed<=RigC) && !(Y+Height<=TopC || Y>=BotC) || (X==LefC && Y==TopC))//ostatnie lub zeby na sobie nie były
+            if(((X+Width+Speed>=LefC && X+Width+Speed<=RigC) && !(Y+Height<=TopC || Y>=BotC)))
             {
                 return true;
             }
         }
     }
-    return collision;
+    return false;
 }
+
+bool Creature::collisionCreatureStart(Board *_map)
+{
+    if(X<=0||Y<=0||Y+Height>=_map->getHeight()||X+Width>=_map->getWidth())
+    {
+        return true;
+    }
+    for(int i=0; i<_map->getNumberOfCreature();i++)
+    {
+        if(this!=_map->getCreature(i))
+        {
+            int TopC=_map->getCreature(i)->getY();
+            int BotC=TopC+_map->getCreature(i)->getHeight();
+            int LefC=_map->getCreature(i)->getX();
+            int RigC=LefC+_map->getCreature(i)->getWidth();
+            if(!(X>=RigC||X+Width<=LefC||Y>=BotC||Y+Height<=TopC))
+            {
+                return true;
+            }
+        }
+    }
+    for(int i=0;i<_map->getNumberOfObstacle();i++)
+    {
+        if(_map->getObstacle(i)->CanPass()==false)
+        {
+            int TopO=_map->getObstacle(i)->getY();
+            int BotO=TopO+_map->getObstacle(i)->getHeight();
+            int LefO=_map->getObstacle(i)->getX();
+            int RigO=LefO+_map->getObstacle(i)->getWidth();
+            if(!(X>=RigO||X+Width<=LefO||Y>=BotO||Y+Height<=TopO))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void Creature::checkField(Board *_map)
+{
+    int X_c=X+Width/2;
+    int Y_c=Y+Height/2;
+    for(int i=0;i<_map->getNumberOfObstacle();i++)
+    {
+        int TopO=_map->getObstacle(i)->getY();//
+        int BotO=TopO+_map->getObstacle(i)->getHeight();//
+        int LefO=_map->getObstacle(i)->getX();//
+        int RigO=LefO+_map->getObstacle(i)->getWidth();//
+        if( ( X_c>=LefO && X_c<=RigO ) && ( Y_c>=TopO && Y_c<=BotO ) )//
+        {//
+            _map->getObstacle(i)->affect(this);
+            return;//
+        }//
+        else//
+        {//
+            Speed=MaxSpeed;//
+        }//
+    }
+}
+
 
 
 void Creature::setPosition(Board *_map)
@@ -247,7 +314,7 @@ void Creature::setPosition(Board *_map)
     {
         X=rand()%(_map->getWidth());
         Y=rand()%(_map->getHeight());
-        if(!checkCollisionDown(_map) && !checkCollisionLeft(_map) && !checkCollisionRight(_map) && !checkCollisionUp(_map))
+        if(!collisionCreatureStart(_map))
         {
             success=true;
         }

@@ -1,4 +1,4 @@
-#include "gwindow.h"
+﻿#include "gwindow.h"
 
 Uint32 callback( Uint32 interval, void* param );
 GWindow* mainWindow;

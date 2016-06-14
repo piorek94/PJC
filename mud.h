@@ -2,16 +2,15 @@
 #define MUD_H
 #include "obstacle.h"
 
-class Creature;
 class Mud : public Obstacle
 {
 private:
     float Slowness;
 public:
-    Mud(float _x, float _y);
+    Mud(float _x, float _y, float _slowness);
     ~Mud();
     virtual bool CanPass();
-    void reduceSpeed(Creature* _creature);
+    virtual void affect(Creature* _creature);
     void setSlowness(float _slowness);
     float getSlowness();
 };

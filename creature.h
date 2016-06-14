@@ -15,10 +15,12 @@ protected:
     int Height;
     int Width;
     float Speed;
+    float MaxSpeed;
     bool checkCollisionUp(Board *_map);
     bool checkCollisionDown(Board *_map);
     bool checkCollisionRight(Board *_map);
     bool checkCollisionLeft(Board *_map);
+    bool collisionCreatureStart(Board *_map);
 public:
     Creature(Board *_map, float _speed, int _maxHp);
     virtual ~Creature();
@@ -26,6 +28,7 @@ public:
     virtual void rotate(float _angle)=0;
     virtual void shoot()=0;
     virtual void setWeapon()=0;
+    void checkField(Board *_map);
     void setPosition(Board *_map);
     float getX();
     float getY();
@@ -42,7 +45,8 @@ public:
     void setMaxHp(int _maxhp);
     void setSpeed(float _speed);
     float getSpeed();
-
+    void setMaxSpeed(float _maxSpeed);
+    float getMaxSpeed();
 };
 
 #endif // CREATURE_H

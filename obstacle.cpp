@@ -4,8 +4,8 @@ Obstacle::Obstacle(float _x, float _y)
 {
     X=_x;
     Y=_y;
-    Height=60;//jesli textury
-    Width=60;//jesli textury
+    Height=60;
+    Width=60;
 }
 Obstacle::~Obstacle()
 {

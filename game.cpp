@@ -3,7 +3,7 @@
 Game::Game()
 {
     map = new Board("mapa.txt");
-    map->addCreature(new Player(map,2,200));
+    map->addCreature(new Player(map,3,500));
     numberOfEnemies=2;
     setEnemies();
 }
@@ -27,6 +27,6 @@ void Game::setEnemies()
 {
     for(int i=0;i<numberOfEnemies;i++)
     {
-        map->addCreature(new Enemy(map,1,100));
+        map->addCreature(new Enemy(map,2,500));
     }
 }
