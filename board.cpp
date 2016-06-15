@@ -13,6 +13,7 @@ Board::~Board()
         delete getObstacle(i);
     }
     clearObstacle();
+    clearCreature();
 }
 
 int Board::getHeight()
@@ -77,7 +78,7 @@ bool Board::loadBoard(std::string _pathBoard)
        }
        if(tmp==3)
        {
-           obs = new Barbwire(posX,posY,1);
+           obs = new Barbwire(posX,posY,2);
        }
             addObstacle(obs);
     }
@@ -114,4 +115,9 @@ void Board::clearCreature()
 void Board::clearObstacle()
 {
     obstacles.clear();
+}
+
+void Board::removeCreature(int i)
+{
+    creatures.erase(creatures.begin()+i);
 }

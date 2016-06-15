@@ -57,12 +57,7 @@ GWindow::~GWindow()
 
 void GWindow::timerUpdate()
 {
-    for (int i=0; i<game->getMapPtr()->getNumberOfCreature(); i++)
-    {
-        game->getMapPtr()->getCreature(i)->move(game->getMapPtr());
-        game->getMapPtr()->getCreature(i)->checkField(game->getMapPtr());
-    }
-
+    game->updateGame();
     showBackground();
     showObstacles();
     showCreatures();

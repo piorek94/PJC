@@ -22,6 +22,7 @@ public:
     Creature* getCreature(int c);
     Obstacle* getObstacle(int o);
     void addCreature(Creature* _creature);
+    void removeCreature(int i);
     void addObstacle(Obstacle* _obstacle);
     void clearCreature();
     void clearObstacle();
