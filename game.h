@@ -6,11 +6,13 @@
 class Game
 {
 public:
-    Game();
+    Game(int Enemies);
     ~Game();
     Board *getMapPtr();
     void setEnemies();
     void updateGame();
+    bool win();
+    bool lose();
 
 private:
     Board *map;

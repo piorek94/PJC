@@ -1,10 +1,10 @@
 #include "game.h"
 
-Game::Game()
+Game::Game(int Enemies)
 {
     map = new Board("mapa.txt");
     map->addCreature(new Player(map,3,500));
-    numberOfEnemies=2;
+    numberOfEnemies=Enemies;
     setEnemies();
 }
 
@@ -42,4 +42,34 @@ void Game::updateGame()
         map->getCreature(i)->checkField(map);
         }
     }
+}
+
+bool Game::lose()
+{
+    bool lose=true;
+    Player *tmp;
+    for (int i=0; i<map->getNumberOfCreature(); i++)
+    {
+        tmp = dynamic_cast<Player*> (map->getCreature(i));
+        if(tmp)
+        {
+            lose=false;
+        }
+    }
+    return lose;
+}
+
+bool Game::win()
+{
+    bool win=true;
+    Enemy *tmp;
+    for (int i=0; i<map->getNumberOfCreature(); i++)
+    {
+        tmp = dynamic_cast<Enemy*> (map->getCreature(i));
+        if(tmp)
+        {
+            win=false;
+        }
+    }
+    return win;
 }

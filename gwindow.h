@@ -15,11 +15,15 @@ private:
     SDL_Surface *wall;
     SDL_Surface *barbwire;
     SDL_Surface *mud;
+    SDL_Surface *lose;
+    SDL_Surface *win;
     Game* game;
     SDL_Surface* loadSurface( std::string path );
     void showObstacles();
     void showCreatures();
     void showBackground();
+    void showWin();
+    void showLose();
     void showHp(Creature *_creature);
 public:
     bool init();

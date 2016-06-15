@@ -2,7 +2,7 @@
 #include <typeinfo>
 GWindow::GWindow()
 {
-    game=new Game();
+    game=new Game(1);
     window=NULL;
     screenSurface=NULL;
     background=NULL;
@@ -11,6 +11,8 @@ GWindow::GWindow()
     wall=NULL;
     barbwire=NULL;
     mud=NULL;
+    lose=NULL;
+    win=NULL;
 }
 
 bool GWindow::init()
@@ -46,21 +48,40 @@ GWindow::~GWindow()
     SDL_FreeSurface(player);
     SDL_FreeSurface(enemy);
     SDL_FreeSurface(wall);
+    SDL_FreeSurface(barbwire);
+    SDL_FreeSurface(mud);
+    SDL_FreeSurface(lose);
+    SDL_FreeSurface(win);
     screenSurface=NULL;
     background=NULL;
     player=NULL;
     enemy=NULL;
     wall=NULL;
+    barbwire=NULL;
+    mud=NULL;
+    lose=NULL;
+    win=NULL;
     SDL_DestroyWindow( window );
     SDL_Quit();
 }
 
 void GWindow::timerUpdate()
 {
+    if( !(game->lose() || game->win()) )
+    {
     game->updateGame();
     showBackground();
     showObstacles();
     showCreatures();
+    }
+    else if(game->win())
+    {
+        showWin();
+    }
+    else if(game->lose())
+    {
+        showLose();
+    }
     SDL_UpdateWindowSurface(window);
 }
 
@@ -129,6 +150,16 @@ void GWindow::showBackground()
     SDL_BlitScaled( background, NULL, screenSurface, NULL );
 }
 
+void GWindow::showWin()
+{
+    SDL_BlitScaled( win, NULL, screenSurface, NULL );
+}
+
+void GWindow::showLose()
+{
+    SDL_BlitScaled( lose, NULL, screenSurface, NULL );
+}
+
 bool  GWindow::loadMedia()
 {
     bool success = true;
@@ -138,8 +169,10 @@ bool  GWindow::loadMedia()
     enemy=loadSurface("enemy1.bmp");
     mud = loadSurface("mud.bmp");
     barbwire = loadSurface("barbwire.bmp");
+    lose = loadSurface("lose.bmp");
+    win = loadSurface("win.bmp");
 
-    if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL)
+    if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL || lose == NULL || win == NULL)
     {
         std::cout<<"Failed to load texture image!\n";
         success =false;
