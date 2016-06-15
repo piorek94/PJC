@@ -8,7 +8,7 @@ public:
     Wall(float _x, float _y);
     ~Wall();
     virtual bool CanPass();
-    virtual void affect(Creature *_creature);
+    virtual void affect(Creature *_creature, bool condition);
 };
 
 #endif // WALL_H

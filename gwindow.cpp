@@ -2,7 +2,7 @@
 #include <typeinfo>
 GWindow::GWindow()
 {
-    game=new Game(1);
+    game=new Game(2);
     window=NULL;
     screenSurface=NULL;
     background=NULL;

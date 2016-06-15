@@ -11,14 +11,12 @@ Barbwire::~Barbwire()
 
 }
 
-void Barbwire::affect(Creature* _creature)
+void Barbwire::affect(Creature* _creature, bool condition)
 {
-//    int X_c=_creature->getX()+_creature->getWidth()/2;
-//    int Y_c=_creature->getY()+_creature->getHeight()/2;
-//    if( ( X_c>=X && X_c<=X+Width ) && ( Y_c>=Y && Y_c<=Y+Height ) )
-//    {
+    if(condition)
+    {
         _creature->setHp(_creature->getHp()-Damage);
-//    }
+    }
 }
 
 void Barbwire::setDamage(int _damage)

@@ -14,7 +14,7 @@ bool Wall::CanPass()
     return false;
 }
 
-void Wall::affect(Creature *_creature)
+void Wall::affect(Creature *_creature, bool condition)
 {
 
 }

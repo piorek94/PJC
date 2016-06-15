@@ -10,7 +10,7 @@ public:
     Mud(float _x, float _y, float _slowness);
     ~Mud();
     virtual bool CanPass();
-    virtual void affect(Creature* _creature);
+    virtual void affect(Creature* _creature,bool condition);
     void setSlowness(float _slowness);
     float getSlowness();
 };

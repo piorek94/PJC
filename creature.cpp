@@ -286,21 +286,24 @@ void Creature::checkField(Board *_map)
 {
     int X_c=X+Width/2;
     int Y_c=Y+Height/2;
+    bool condition=false;
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
-        int TopO=_map->getObstacle(i)->getY();//
-        int BotO=TopO+_map->getObstacle(i)->getHeight();//
-        int LefO=_map->getObstacle(i)->getX();//
-        int RigO=LefO+_map->getObstacle(i)->getWidth();//
-        if( ( X_c>=LefO && X_c<=RigO ) && ( Y_c>=TopO && Y_c<=BotO ) )//
-        {//
-            _map->getObstacle(i)->affect(this);
-            return;//
-        }//
-        else//
-        {//
-            Speed=MaxSpeed;//
-        }//
+        int TopO=_map->getObstacle(i)->getY();
+        int BotO=TopO+_map->getObstacle(i)->getHeight();
+        int LefO=_map->getObstacle(i)->getX();
+        int RigO=LefO+_map->getObstacle(i)->getWidth();
+        if( ( X_c>=LefO && X_c<=RigO ) && ( Y_c>=TopO && Y_c<=BotO ) )
+        {
+            condition=true;
+            _map->getObstacle(i)->affect(this,condition);
+            return;
+        }
+        else
+        {
+            condition=false;
+            _map->getObstacle(i)->affect(this,condition);
+        }
     }
 }
 
@@ -320,3 +323,4 @@ void Creature::setPosition(Board *_map)
         }
     }
 }
+

@@ -22,7 +22,7 @@ public:
     int getHeight();
     void setWidth(int _width);
     void setHeight(int _height);
-    virtual void affect(Creature *_creature)=0;
+    virtual void affect(Creature *_creature,bool condition)=0;
 };
 
 #endif // OBSTACLE_H

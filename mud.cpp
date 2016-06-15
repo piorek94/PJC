@@ -15,19 +15,15 @@ bool Mud::CanPass()
     return true;
 }
 
-void Mud::affect(Creature* _creature)
+void Mud::affect(Creature* _creature, bool condition)
 {
-//    int X_c=_creature->getX()+_creature->getWidth()/2;
-//    int Y_c=_creature->getY()+_creature->getHeight()/2;
-//    if( ( X_c>=X && X_c<=X+Width ) && ( Y_c>=Y && Y_c<=Y+Height ) )
-//    {
+    if(condition)
+    {
         _creature->setSpeed(_creature->getMaxSpeed()-Slowness);
-//        return;
-//    }
-//    else
-//    {
-//        _creature->setSpeed(_creature->getMaxSpeed());
-//    }
+    }else
+    {
+        _creature->setSpeed(_creature->getMaxSpeed());
+    }
 }
 void Mud::setSlowness(float _slowness)
 {
