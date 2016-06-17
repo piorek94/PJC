@@ -1,7 +1,7 @@
 #include "enemy.h"
 
-Enemy::Enemy(Board *_map, float _speed, int _maxHp)
-    :Creature(_map,_speed, _maxHp)
+Enemy::Enemy(Board *_map, float _speed, int _maxHp,int _width, int _height)
+    :Creature(_map,_speed, _maxHp, _width, _height)
 {
 
 }
@@ -12,11 +12,6 @@ Enemy::~Enemy()
 }
 
 void Enemy::shoot()
-{
-
-}
-
-void Enemy::rotate(float _angle)
 {
 
 }

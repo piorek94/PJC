@@ -8,13 +8,12 @@ class Enemy : public Creature
 {
 private:
     static int direction();
-    enum ruch{up,right,down,left};
+    enum move_dir{up,right,down,left};
 public:
-    Enemy(Board *_map, float _speed, int _maxHp);
+    Enemy(Board *_map, float _speed, int _maxHp, int _width, int _height);
     ~Enemy();
     void virtual move(Board *_map);
     void virtual shoot();
-    void virtual rotate(float _angle);
     virtual void setWeapon();
 };
 

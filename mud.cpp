@@ -25,12 +25,3 @@ void Mud::affect(Creature* _creature, bool condition)
         _creature->setSpeed(_creature->getMaxSpeed());
     }
 }
-void Mud::setSlowness(float _slowness)
-{
-    Slowness=_slowness;
-}
-
-float Mud::getSlowness()
-{
-    return Slowness;
-}

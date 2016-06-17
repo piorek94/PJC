@@ -9,10 +9,8 @@ private:
 public:
     Barbwire(float _x, float _y, int _damage);
     ~Barbwire();
-    virtual void affect(Creature* _creature,bool condition);
-    void setDamage(int _damage);
-    int getDamage();
-    virtual bool CanPass();
+    void affect(Creature* _creature,bool condition);
+    bool CanPass();
 };
 
 #endif // BARBWIRE_H

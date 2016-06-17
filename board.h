@@ -15,6 +15,7 @@ class Board : public ISize
 private:
     int Width;
     int Height;
+    enum obst{wall,mud,barbwire};
     bool loadBoard(std::string _pathBoard);
     std::vector <Creature*> creatures;
     std::vector <Obstacle*> obstacles;
@@ -24,16 +25,13 @@ public:
     void addCreature(Creature* _creature);
     void removeCreature(int i);
     void addObstacle(Obstacle* _obstacle);
-    void clearCreature();
-    void clearObstacle();
+    void clearCreatures();
     int getNumberOfObstacle();
     int getNumberOfCreature();
     Board(std::string _plik);
     ~Board();
     int getHeight();
     int getWidth();
-    void setHeight(int _height);
-    void setWidth(int _width);
 };
 
 #endif // BOARD_H

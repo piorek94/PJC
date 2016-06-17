@@ -1,7 +1,7 @@
 #include "player.h"
 
-Player::Player(Board *_map, float _speed, int _maxHp)
-    :Creature(_map,_speed,_maxHp)
+Player::Player(Board *_map, float _speed, int _maxHp, int _width, int _height)
+    :Creature(_map,_speed,_maxHp,_width,_height)
 {
 
 }
@@ -46,11 +46,6 @@ void Player::move(Board *_map)
 }
 
 void Player::shoot()
-{
-
-}
-
-void Player::rotate(float _angle)
 {
 
 }

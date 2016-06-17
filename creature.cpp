@@ -2,14 +2,14 @@
 #include "board.h"
 
 
-Creature::Creature(Board *_map, float _speed, int _maxHp)
+Creature::Creature(Board *_map, float _speed, int _maxHp, int _width, int _height)
 {
-    setMaxSpeed(_speed);
+    MaxSpeed=_speed;
     Speed=MaxSpeed;
     MaxHp=_maxHp;
     Hp=_maxHp;
-    Height=30;
-    Width=20;
+    Height=_height;
+    Width=_width;
     setPosition(_map);
 }
 
@@ -33,28 +33,9 @@ int Creature::getMaxHp()
     return MaxHp;
 }
 
-void Creature::setMaxHp(int _maxhp)
-{
-    MaxHp=_maxhp;
-}
-
 void Creature::setSpeed(float _speed)
 {
     Speed=_speed;
-}
-
-float Creature::getSpeed()
-{
-    return Speed;
-}
-
-void Creature::setMaxSpeed(float _maxSpeed)
-{
-    if(_maxSpeed<0)
-    {
-        _maxSpeed=-_maxSpeed;
-    }
-    MaxSpeed=_maxSpeed;
 }
 
 float Creature::getMaxSpeed()
@@ -82,16 +63,6 @@ float Creature::getY()
     return Y;
 }
 
-void Creature::setX(float _x)
-{
-    X=_x;
-}
-
-void Creature::setY(float _y)
-{
-    Y=_y;
-}
-
 int Creature::getWidth()
 {
     return Width;
@@ -100,16 +71,6 @@ int Creature::getWidth()
 int Creature::getHeight()
 {
     return Height;
-}
-
-void Creature::setWidth(int _width)
-{
-    Width=_width;
-}
-
-void Creature::setHeight(int _height)
-{
-    Height=_height;
 }
 
 bool Creature::checkCollisionUp(Board *_map)

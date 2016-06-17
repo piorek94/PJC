@@ -19,16 +19,6 @@ void Barbwire::affect(Creature* _creature, bool condition)
     }
 }
 
-void Barbwire::setDamage(int _damage)
-{
-    Damage=_damage;
-}
-
-int Barbwire::getDamage()
-{
-    return Damage;
-}
-
 bool Barbwire::CanPass()
 {
     return true;

@@ -8,8 +8,7 @@ class Game
 public:
     Game(int Enemies);
     ~Game();
-    Board *getMapPtr();
-    void setEnemies();
+    Board *getMapPtr();    
     void updateGame();
     bool win();
     bool lose();
@@ -17,7 +16,7 @@ public:
 private:
     Board *map;
     int numberOfEnemies;
-
+    void setEnemies();
 };
 
 #endif // GAME_H

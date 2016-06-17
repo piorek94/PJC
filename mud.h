@@ -9,10 +9,8 @@ private:
 public:
     Mud(float _x, float _y, float _slowness);
     ~Mud();
-    virtual bool CanPass();
-    virtual void affect(Creature* _creature,bool condition);
-    void setSlowness(float _slowness);
-    float getSlowness();
+    bool CanPass();
+    void affect(Creature* _creature,bool condition);
 };
 
 #endif // MUD_H

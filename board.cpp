@@ -12,8 +12,7 @@ Board::~Board()
     {
         delete getObstacle(i);
     }
-    clearObstacle();
-    clearCreature();
+    obstacles.clear();
 }
 
 int Board::getHeight()
@@ -24,16 +23,6 @@ int Board::getHeight()
 int Board::getWidth()
 {
     return Width;
-}
-
-void Board::setHeight(int _height)
-{
-    Height=_height;
-}
-
-void Board::setWidth(int _width)
-{
-    Width=_width;
 }
 
 Creature* Board::getCreature(int c)
@@ -54,11 +43,9 @@ bool Board::loadBoard(std::string _pathBoard)
     {
         return false;
     }
-    int pomH,pomW,numOfObs,tmp,posX,posY;
-    source >> pomW;
-    source >> pomH;
-    setHeight(pomH);
-    setWidth(pomW);
+    int numOfObs,tmp,posX,posY;
+    source >> Width;
+    source >> Height;
 
     source >> numOfObs;
 
@@ -68,15 +55,15 @@ bool Board::loadBoard(std::string _pathBoard)
             source >> tmp;
             source >> posX;
             source >> posY;
-       if(tmp==1)
+       if(tmp==wall)
        {
            obs = new Wall(posX,posY);
        }
-       if(tmp==2)
+       if(tmp==mud)
        {
            obs = new Mud(posX,posY,1);
        }
-       if(tmp==3)
+       if(tmp==barbwire)
        {
            obs = new Barbwire(posX,posY,2);
        }
@@ -107,14 +94,9 @@ int Board::getNumberOfCreature()
     return (int)creatures.size();
 }
 
-void Board::clearCreature()
+void Board::clearCreatures()
 {
     creatures.clear();
-}
-
-void Board::clearObstacle()
-{
-    obstacles.clear();
 }
 
 void Board::removeCreature(int i)

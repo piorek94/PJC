@@ -22,16 +22,6 @@ float Obstacle::getY()
     return Y;
 }
 
-void Obstacle::setX(float _x)
-{
-    X=_x;
-}
-
-void Obstacle::setY(float _y)
-{
-    Y=_y;
-}
-
 int Obstacle::getWidth()
 {
     return Width;
@@ -40,14 +30,4 @@ int Obstacle::getWidth()
 int Obstacle::getHeight()
 {
     return Height;
-}
-
-void Obstacle::setWidth(int _width)
-{
-    Width=_width;
-}
-
-void Obstacle::setHeight(int _height)
-{
-    Height=_height;
 }

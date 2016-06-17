@@ -12,17 +12,13 @@ protected:
     int Height;
 public:
     virtual bool CanPass()=0;
+    virtual void affect(Creature *_creature,bool condition)=0;
     Obstacle(float _x, float _y);
     ~Obstacle();
     float getX();
     float getY();
-    void setX(float _x);
-    void setY(float _y);
     int getWidth();
-    int getHeight();
-    void setWidth(int _width);
-    void setHeight(int _height);
-    virtual void affect(Creature *_creature,bool condition)=0;
+    int getHeight();    
 };
 
 #endif // OBSTACLE_H
