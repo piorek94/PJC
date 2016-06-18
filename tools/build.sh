@@ -34,7 +34,7 @@ function clear() {
         CMAKE_ADDITIONAL_OPTIONS="-DCMAKE_MODULE_PATH=/opt/local/share/cmake/Modules/"
     elif [ "$OS" == "Linux" ]; then
         echo "Linux build"
-        CMAKE_ADDITIONAL_OPTIONS="-DBOOST_ROOT=/home/przemek/Development/boost_1_60_0/"
+        CMAKE_ADDITIONAL_OPTIONS=""
     fi
     mkdir -p $BUILD_DIR
     cd $BUILD_DIR

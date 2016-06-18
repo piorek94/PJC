@@ -21,13 +21,12 @@ int main( int argc, char* args[] )
     else
     {
         //Create window
-        window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-        if( window == NULL )
-        {
+        window = SDL_CreateWindow( "SDL Tutorial",
+                                   SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                                   SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        if( window == NULL ) {
             std::cout<<"Window could not be created! SDL_Error: %s\n"<<SDL_GetError();
-        }
-        else
-        {
+        } else {
             //Get window surface
             screenSurface = SDL_GetWindowSurface( window );
 
@@ -47,6 +46,5 @@ int main( int argc, char* args[] )
 
     //Quit SDL subsystems
     SDL_Quit();
-
     return 0;
 }
