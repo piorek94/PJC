@@ -59,4 +59,5 @@ void Enemy::move(Board *_map)
             X-=Speed;
         }
     }
+    checkField(_map);
 }

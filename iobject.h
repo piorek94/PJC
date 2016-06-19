@@ -1,9 +1,7 @@
 #ifndef IOBJECT_H
 #define IOBJECT_H
 
-#include "isize.h"
-
-class IObject : public ISize
+class IObject
 {
 public:
     IObject();

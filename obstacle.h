@@ -1,24 +1,15 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
 
-#include "iobject.h"
+#include "object.h"
 class Creature;
-class Obstacle : public IObject
+class Obstacle : public Object
 {
-protected:
-    float X;
-    float Y;
-    int Width;
-    int Height;
 public:
-    virtual bool CanPass()=0;
-    virtual void affect(Creature *_creature,bool condition)=0;
     Obstacle(float _x, float _y);
-    ~Obstacle();
-    float getX();
-    float getY();
-    int getWidth();
-    int getHeight();    
+    virtual ~Obstacle();
+    virtual bool CanPass();
+    virtual void affect(Creature *_creature,bool condition)=0;   
 };
 
 #endif // OBSTACLE_H

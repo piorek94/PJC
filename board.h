@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "isize.h"
+#include "object.h"
 #include "player.h"
 #include "enemy.h"
 #include "wall.h"
@@ -10,28 +10,31 @@
 #include <vector>
 #include <iostream>
 
-class Board : public ISize
+class Board : public Object
 {
 private:
-    int Width;
-    int Height;
+//    int Width;
+//    int Height;
+//    int X;
+//    int Y;
     enum obst{wall,mud,barbwire};
-    bool loadBoard(std::string _pathBoard);
     std::vector <Creature*> creatures;
     std::vector <Obstacle*> obstacles;
+    bool loadBoard(std::string _pathBoard);
 public:
+    Board(std::string _file);
+    virtual ~Board();
+//    int getHeight();
+//    int getWidth();
+//    float getX();
+//    float getY();
     Creature* getCreature(int c);
     Obstacle* getObstacle(int o);
     void addCreature(Creature* _creature);
     void removeCreature(int i);
-    void addObstacle(Obstacle* _obstacle);
     void clearCreatures();
     int getNumberOfObstacle();
     int getNumberOfCreature();
-    Board(std::string _plik);
-    ~Board();
-    int getHeight();
-    int getWidth();
 };
 
 #endif // BOARD_H

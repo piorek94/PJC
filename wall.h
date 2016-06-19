@@ -6,8 +6,7 @@ class Wall : public Obstacle
 {
 public:
     Wall(float _x, float _y);
-    ~Wall();
-    bool CanPass();
+    virtual ~Wall();
     void affect(Creature *_creature, bool condition);
 };
 

@@ -27,7 +27,7 @@ void Game::setEnemies()
 {
     for(int i=0;i<numberOfEnemies;i++)
     {
-        map->addCreature(new Enemy(map,2,500, 20, 30));
+        map->addCreature(new Enemy(map,2,200, 20, 30));
     }
 }
 
@@ -38,9 +38,11 @@ void Game::updateGame()
         if(map->getCreature(i)->isDead())
         {
             map->removeCreature(i);
-        }else{
-        map->getCreature(i)->move(map);
-        map->getCreature(i)->checkField(map);
+        }
+        else
+        {
+            map->getCreature(i)->move(map);
+            map->getCreature(i)->checkField(map);
         }
     }
 }

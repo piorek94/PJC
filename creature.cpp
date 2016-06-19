@@ -10,7 +10,7 @@ Creature::Creature(Board *_map, float _speed, int _maxHp, int _width, int _heigh
     Hp=_maxHp;
     Height=_height;
     Width=_width;
-    setPosition(_map);
+    setStartPosition(_map);
 }
 
 Creature::~Creature()
@@ -51,26 +51,6 @@ bool Creature::isDead()
     }else{
         return false;
     }
-}
-
-float Creature::getX()
-{
-    return X;
-}
-
-float Creature::getY()
-{
-    return Y;
-}
-
-int Creature::getWidth()
-{
-    return Width;
-}
-
-int Creature::getHeight()
-{
-    return Height;
 }
 
 bool Creature::checkCollisionUp(Board *_map)
@@ -270,7 +250,7 @@ void Creature::checkField(Board *_map)
 
 
 
-void Creature::setPosition(Board *_map)
+void Creature::setStartPosition(Board *_map)
 {
     bool success=false;
     srand(time(0));

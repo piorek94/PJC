@@ -25,7 +25,7 @@ bool GWindow::init()
     }
     else
     {
-        window = SDL_CreateWindow( "Obrona stalingradu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, game->getMapPtr()->getWidth(),game->getMapPtr()->getHeight(), SDL_WINDOW_SHOWN );
+        window = SDL_CreateWindow( "Obrona stalingradu", game->getMapPtr()->getX(), game->getMapPtr()->getY(), game->getMapPtr()->getWidth(),game->getMapPtr()->getHeight(), SDL_WINDOW_SHOWN );
         if( window == NULL )
         {
             std::cout<<"Window could not be created! SDL_Error: %s\n"<<SDL_GetError();

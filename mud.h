@@ -8,7 +8,7 @@ private:
     float Slowness;
 public:
     Mud(float _x, float _y, float _slowness);
-    ~Mud();
+    virtual ~Mud();
     bool CanPass();
     void affect(Creature* _creature,bool condition);
 };

@@ -1,9 +1,9 @@
 #include "board.h"
 #include <fstream>
 
-Board::Board(std::string _plik)
+Board::Board(std::string _file)
 {
-    this->loadBoard(_plik);
+    this->loadBoard(_file);
 }
 
 Board::~Board()
@@ -13,16 +13,6 @@ Board::~Board()
         delete getObstacle(i);
     }
     obstacles.clear();
-}
-
-int Board::getHeight()
-{
-    return Height;
-}
-
-int Board::getWidth()
-{
-    return Width;
 }
 
 Creature* Board::getCreature(int c)
@@ -61,13 +51,13 @@ bool Board::loadBoard(std::string _pathBoard)
        }
        if(tmp==mud)
        {
-           obs = new Mud(posX,posY,1);
+           obs = new Mud(posX,posY,2);
        }
        if(tmp==barbwire)
        {
            obs = new Barbwire(posX,posY,2);
        }
-            addObstacle(obs);
+       obstacles.push_back(obs);
     }
     source.close();
 
@@ -77,11 +67,6 @@ bool Board::loadBoard(std::string _pathBoard)
 void Board:: addCreature(Creature* _creature)
 {
     creatures.push_back(_creature);
-}
-
-void Board::addObstacle(Obstacle* _obstacle)
-{
-    obstacles.push_back(_obstacle);
 }
 
 int Board::getNumberOfObstacle()

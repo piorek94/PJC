@@ -19,7 +19,7 @@ void Mud::affect(Creature* _creature, bool condition)
 {
     if(condition)
     {
-        _creature->setSpeed(_creature->getMaxSpeed()-Slowness);
+        _creature->setSpeed(_creature->getMaxSpeed()/Slowness);
     }else
     {
         _creature->setSpeed(_creature->getMaxSpeed());

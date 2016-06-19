@@ -2,18 +2,15 @@
 #define CREATURE_H
 
 #include "imobile.h"
+#include "object.h"
 #include <ctime>
 #include <cstdlib>
 
-class Creature : public IMobile
+class Creature : public IMobile, public Object
 {
 protected:
     int Hp;
     int MaxHp;
-    float X;
-    float Y;
-    int Height;
-    int Width;
     float Speed;
     float MaxSpeed;
     bool checkCollisionUp(Board *_map);
@@ -24,15 +21,10 @@ protected:
 public:
     Creature(Board *_map, float _speed, int _maxHp, int _width, int _height);
     virtual ~Creature();
-    virtual void move(Board *_map)=0;
     virtual void shoot()=0;
     virtual void setWeapon()=0;
     void checkField(Board *_map);
-    void setPosition(Board *_map);
-    float getX();
-    float getY();
-    int getWidth();
-    int getHeight();
+    void setStartPosition(Board *_map);
     bool isDead();
     int getHp();
     void setHp(int _hp);
