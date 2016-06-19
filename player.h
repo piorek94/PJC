@@ -17,8 +17,8 @@ public:
     Player(Board *_map, float _speed, int _maxHp, int _width, int _height);
     virtual ~Player();
 //    void setActuallWeapon(TypeWeapon* _typeWeapon);
-    void virtual move(Board *_map);
-    void virtual shoot();
-    virtual void setWeapon();
+    void move(Board *_map);
+    void shoot();
+    void setWeapon();
 };
 #endif // PLAYER_H

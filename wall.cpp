@@ -1,4 +1,5 @@
 #include "wall.h"
+#include "creature.h"
 
 Wall::Wall(float _x, float _y)
     : Obstacle(_x,_y)

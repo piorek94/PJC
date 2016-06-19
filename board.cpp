@@ -1,4 +1,7 @@
 #include "board.h"
+#include "wall.h"
+#include "barbwire.h"
+#include "mud.h"
 #include <fstream>
 
 Board::Board(std::string _file)
@@ -15,9 +18,9 @@ Board::~Board()
     obstacles.clear();
 }
 
-Creature* Board::getCreature(int c)
+Mobile *Board::getMobile(int c)
 {
-    return creatures.at(c);
+    return mobiles.at(c);
 }
 
 Obstacle* Board::getObstacle(int o)
@@ -64,9 +67,9 @@ bool Board::loadBoard(std::string _pathBoard)
     return true;
 }
 
-void Board:: addCreature(Creature* _creature)
+void Board::addMobile(Mobile *_mobile)
 {
-    creatures.push_back(_creature);
+    mobiles.push_back(_mobile);
 }
 
 int Board::getNumberOfObstacle()
@@ -74,17 +77,17 @@ int Board::getNumberOfObstacle()
     return (int)obstacles.size();
 }
 
-int Board::getNumberOfCreature()
+int Board::getNumberOfMobiles()
 {
-    return (int)creatures.size();
+    return (int)mobiles.size();
 }
 
-void Board::clearCreatures()
+void Board::clearMobiles()
 {
-    creatures.clear();
+    mobiles.clear();
 }
 
-void Board::removeCreature(int i)
+void Board::removeMobile(int i)
 {
-    creatures.erase(creatures.begin()+i);
+    mobiles.erase(mobiles.begin()+i);
 }

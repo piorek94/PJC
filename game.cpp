@@ -1,20 +1,20 @@
 #include "game.h"
 
-Game::Game(int Enemies)
+Game::Game()
 {
     map = new Board("mapa.txt");
-    map->addCreature(new Player(map,3,500, 20, 30));
-    numberOfEnemies=Enemies;
+    map->addMobile(new Player(map,3,500, 20, 30));
+    numberOfEnemies=2;
     setEnemies();
 }
 
 Game::~Game()
 {    
-    for(int i=0;i<map->getNumberOfCreature();i++)
+    for(int i=0;i<map->getNumberOfMobiles();i++)
     {
-        delete (map->getCreature(i));
+        delete (map->getMobile(i));
     }
-    map->clearCreatures();
+    map->clearMobiles();
     delete map;
 }
 
@@ -27,22 +27,22 @@ void Game::setEnemies()
 {
     for(int i=0;i<numberOfEnemies;i++)
     {
-        map->addCreature(new Enemy(map,2,200, 20, 30));
+        map->addMobile(new Enemy(map,2,200, 20, 30));
     }
 }
 
 void Game::updateGame()
 {
-    for (int i=0; i<map->getNumberOfCreature(); i++)
+    for (int i=0; i<map->getNumberOfMobiles(); i++)
     {
-        if(map->getCreature(i)->isDead())
+        if(map->getMobile(i)->getToRemove())
         {
-            map->removeCreature(i);
+            map->removeMobile(i);
         }
         else
         {
-            map->getCreature(i)->move(map);
-            map->getCreature(i)->checkField(map);
+            map->getMobile(i)->move(map);
+            map->getMobile(i)->checkField(map);
         }
     }
 }
@@ -51,9 +51,9 @@ bool Game::lose()
 {
     bool lose=true;
     Player *tmp;
-    for (int i=0; i<map->getNumberOfCreature(); i++)
+    for (int i=0; i<map->getNumberOfMobiles(); i++)
     {
-        tmp = dynamic_cast<Player*> (map->getCreature(i));
+        tmp = dynamic_cast<Player*> (map->getMobile(i));
         if(tmp)
         {
             lose=false;
@@ -66,9 +66,9 @@ bool Game::win()
 {
     bool win=true;
     Enemy *tmp;
-    for (int i=0; i<map->getNumberOfCreature(); i++)
+    for (int i=0; i<map->getNumberOfMobiles(); i++)
     {
-        tmp = dynamic_cast<Enemy*> (map->getCreature(i));
+        tmp = dynamic_cast<Enemy*> (map->getMobile(i));
         if(tmp)
         {
             win=false;

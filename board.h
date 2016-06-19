@@ -1,9 +1,9 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "object.h"
 #include "player.h"
 #include "enemy.h"
+#include "mobile.h"
 #include "wall.h"
 #include "barbwire.h"
 #include "mud.h"
@@ -13,28 +13,20 @@
 class Board : public Object
 {
 private:
-//    int Width;
-//    int Height;
-//    int X;
-//    int Y;
     enum obst{wall,mud,barbwire};
-    std::vector <Creature*> creatures;
+    std::vector <Mobile*> mobiles;
     std::vector <Obstacle*> obstacles;
     bool loadBoard(std::string _pathBoard);
 public:
     Board(std::string _file);
     virtual ~Board();
-//    int getHeight();
-//    int getWidth();
-//    float getX();
-//    float getY();
-    Creature* getCreature(int c);
+    Mobile* getMobile(int c);
     Obstacle* getObstacle(int o);
-    void addCreature(Creature* _creature);
-    void removeCreature(int i);
-    void clearCreatures();
+    void addMobile(Mobile* _mobile);
+    void removeMobile(int i);
+    void clearMobiles();
     int getNumberOfObstacle();
-    int getNumberOfCreature();
+    int getNumberOfMobiles();
 };
 
 #endif // BOARD_H

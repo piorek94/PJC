@@ -2,7 +2,7 @@
 #include <typeinfo>
 GWindow::GWindow()
 {
-    game=new Game(2);
+    game=new Game();
     window=NULL;
     screenSurface=NULL;
     background=NULL;
@@ -72,7 +72,7 @@ void GWindow::timerUpdate()
     game->updateGame();
     showBackground();
     showObstacles();
-    showCreatures();
+    showMobiles();
     }
     else if(game->win())
     {
@@ -109,24 +109,29 @@ void GWindow::showObstacles()
     }
 }
 
-void GWindow::showCreatures()
+void GWindow::showMobiles()
 {
+    Creature *tmp;
     SDL_Rect dts;
-    for(int i=0;i<game->getMapPtr()->getNumberOfCreature();i++)
+    for(int i=0;i<game->getMapPtr()->getNumberOfMobiles();i++)
     {
-        dts.x=game->getMapPtr()->getCreature(i)->getX();
-        dts.y=game->getMapPtr()->getCreature(i)->getY();
-        dts.w=game->getMapPtr()->getCreature(i)->getWidth();
-        dts.h=game->getMapPtr()->getCreature(i)->getHeight();
-        if(typeid(*(game->getMapPtr()->getCreature(i)))==typeid(Player))
+        dts.x=game->getMapPtr()->getMobile(i)->getX();
+        dts.y=game->getMapPtr()->getMobile(i)->getY();
+        dts.w=game->getMapPtr()->getMobile(i)->getWidth();
+        dts.h=game->getMapPtr()->getMobile(i)->getHeight();
+        if(typeid(*(game->getMapPtr()->getMobile(i)))==typeid(Player))
         {
             SDL_BlitScaled(player,NULL,screenSurface,&dts);
         }
-        if(typeid(*(game->getMapPtr()->getCreature(i)))==typeid(Enemy))
+        if(typeid(*(game->getMapPtr()->getMobile(i)))==typeid(Enemy))
         {
             SDL_BlitScaled(enemy,NULL,screenSurface,&dts);
         }
-        showHp(game->getMapPtr()->getCreature(i));
+        tmp=dynamic_cast<Creature*>(game->getMapPtr()->getMobile(i));
+        if(tmp)
+        {
+            showHp(tmp);
+        }
     }
 }
 

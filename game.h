@@ -6,7 +6,7 @@
 class Game
 {
 public:
-    Game(int Enemies);
+    Game();
     ~Game();
     Board *getMapPtr();    
     void updateGame();

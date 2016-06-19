@@ -20,7 +20,7 @@ private:
     Game* game;
     SDL_Surface* loadSurface( std::string path );
     void showObstacles();
-    void showCreatures();
+    void showMobiles();
     void showBackground();
     void showWin();
     void showLose();

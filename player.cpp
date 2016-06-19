@@ -43,7 +43,6 @@ void Player::move(Board *_map)
             X-=Speed;
         }
     }
-    checkField(_map);
 }
 
 void Player::shoot()
