@@ -7,6 +7,8 @@
 #include "wall.h"
 #include "barbwire.h"
 #include "mud.h"
+#include "obstacle.h"
+#include "mobile.h"
 #include <vector>
 #include <iostream>
 
