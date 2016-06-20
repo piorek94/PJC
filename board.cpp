@@ -1,8 +1,8 @@
 #include "board.h"
+#include <fstream>
 #include "wall.h"
 #include "barbwire.h"
 #include "mud.h"
-#include <fstream>
 
 Board::Board(std::string _file)
 {

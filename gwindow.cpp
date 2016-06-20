@@ -1,5 +1,10 @@
 #include "gwindow.h"
 #include <typeinfo>
+#include "player.h"
+#include "enemy.h"
+#include "wall.h"
+#include "barbwire.h"
+#include "mud.h"
 GWindow::GWindow()
 {
     game=new Game();

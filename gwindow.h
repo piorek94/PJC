@@ -3,7 +3,8 @@
 
 #include <SDL.h>
 #include "game.h"
-
+#include <iostream>
+class Creature;
 class GWindow
 {
 private:

@@ -2,8 +2,6 @@
 #define ENEMY_H
 #include "creature.h"
 
-
-
 class Enemy : public Creature
 {
 protected:

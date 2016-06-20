@@ -1,6 +1,7 @@
 #include "creature.h"
 #include "board.h"
-
+#include <ctime>
+#include <cstdlib>
 
 Creature::Creature(Board *_map, float _speed, int _maxHp, int _width, int _height)
     :Mobile(_speed,_width,_height)
@@ -57,9 +58,12 @@ bool Creature::collisionCreatureStart(Board *_map)
     {
         return true;
     }
+
+    Creature *tmp;
     for(int i=0; i<_map->getNumberOfMobiles();i++)
     {
-        if(this!=_map->getMobile(i))
+        tmp=dynamic_cast<Creature*>(_map->getMobile(i));
+        if(this!=_map->getMobile(i) && tmp)
         {
             int TopC=_map->getMobile(i)->getY();
             int BotC=TopC+_map->getMobile(i)->getHeight();
@@ -71,6 +75,7 @@ bool Creature::collisionCreatureStart(Board *_map)
             }
         }
     }
+
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
         if(_map->getObstacle(i)->CanPass()==false)

@@ -2,8 +2,6 @@
 #define CREATURE_H
 
 #include "mobile.h"
-#include <ctime>
-#include <cstdlib>
 
 class Creature : public Mobile
 {

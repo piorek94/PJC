@@ -1,10 +1,12 @@
 #include "mud.h"
 #include "creature.h"
+
 Mud::Mud(float _x, float _y, float _slowness)
     : Obstacle(_x, _y)
 {
     Slowness=_slowness;
 }
+
 Mud::~Mud()
 {
 

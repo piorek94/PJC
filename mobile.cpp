@@ -1,5 +1,6 @@
 #include "mobile.h"
 #include "board.h"
+#include "creature.h"
 
 Mobile::Mobile(float _speed, int _width, int _height)
 {

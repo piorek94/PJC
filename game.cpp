@@ -1,5 +1,6 @@
 #include "game.h"
-
+#include "player.h"
+#include "enemy.h"
 Game::Game()
 {
     map = new Board("mapa.txt");

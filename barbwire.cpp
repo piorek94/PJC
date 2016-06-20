@@ -6,6 +6,7 @@ Barbwire::Barbwire(float _x, float _y, int _damage)
 {
     Damage=_damage;
 }
+
 Barbwire::~Barbwire()
 {
 
