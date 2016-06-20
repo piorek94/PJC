@@ -18,6 +18,10 @@ GWindow::GWindow()
     mud=NULL;
     lose=NULL;
     win=NULL;
+//    sniper=NULL;
+//    bazooka=NULL;
+//    pistol=NULL;
+//    sniperrifle=NULL;
 }
 
 bool GWindow::init()
@@ -57,6 +61,10 @@ GWindow::~GWindow()
     SDL_FreeSurface(mud);
     SDL_FreeSurface(lose);
     SDL_FreeSurface(win);
+//    SDL_FreeSurface(sniper);
+//    SDL_FreeSurface(bazooka);
+//    SDL_FreeSurface(pistol);
+//    SDL_FreeSurface(sniperrifle);
     screenSurface=NULL;
     background=NULL;
     player=NULL;
@@ -66,6 +74,10 @@ GWindow::~GWindow()
     mud=NULL;
     lose=NULL;
     win=NULL;
+//    sniper=NULL;
+//    bazooka=NULL;
+//    pistol=NULL;
+//    sniperrifle=NULL;
     SDL_DestroyWindow( window );
     SDL_Quit();
 }
@@ -117,6 +129,7 @@ void GWindow::showObstacles()
 void GWindow::showMobiles()
 {
     Creature *tmp;
+    Enemy *tmp1;
     SDL_Rect dts;
     for(int i=0;i<game->getMapPtr()->getNumberOfMobiles();i++)
     {
@@ -128,7 +141,8 @@ void GWindow::showMobiles()
         {
             SDL_BlitScaled(player,NULL,screenSurface,&dts);
         }
-        if(typeid(*(game->getMapPtr()->getMobile(i)))==typeid(Enemy))
+        tmp1=dynamic_cast<Enemy*>(game->getMapPtr()->getMobile(i));
+        if(tmp1)
         {
             SDL_BlitScaled(enemy,NULL,screenSurface,&dts);
         }
@@ -181,8 +195,12 @@ bool  GWindow::loadMedia()
     barbwire = loadSurface("barbwire.bmp");
     lose = loadSurface("lose.bmp");
     win = loadSurface("win.bmp");
+    //sniper = loadSurface("sniper.bmp");
+    //bazooka = loadSurface("dupa.bmp");
+    //pistol = loadSurface("pistol.bmp");
+    //sniperrifle = loadSurface("sniperrifle");
 
-    if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL || lose == NULL || win == NULL)
+    if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL || lose == NULL || win == NULL /*|| sniper == NULL || bazooka == NULL ||pistol == NULL || sniperrifle == NULL*/)
     {
         std::cout<<"Failed to load texture image!\n";
         success =false;

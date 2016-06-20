@@ -1,11 +1,15 @@
 #include "game.h"
 #include "player.h"
-#include "enemy.h"
+#include "pistoler.h"
+#include "bazooker.h"
+#include "sniper.h"
 Game::Game()
 {
     map = new Board("mapa.txt");
     map->addMobile(new Player(map,3,500, 20, 30));
-    numberOfEnemies=2;
+    numberOfBazookers=1;
+    numberOfPistolers=1;
+    numberOfSnipers=1;
     setEnemies();
 }
 
@@ -26,9 +30,17 @@ Board* Game::getMapPtr()
 
 void Game::setEnemies()
 {
-    for(int i=0;i<numberOfEnemies;i++)
+    for(int i=0;i<numberOfBazookers;i++)
     {
-        map->addMobile(new Enemy(map,2,200, 20, 30));
+        map->addMobile(new Bazooker(map,1,600, 30, 40));
+    }
+    for(int i=0;i<numberOfPistolers;i++)
+    {
+        map->addMobile(new Pistoler(map,2,1000, 20, 30));
+    }
+    for(int i=0;i<numberOfSnipers;i++)
+    {
+        map->addMobile(new Sniper(map,0,400, 20, 30));
     }
 }
 

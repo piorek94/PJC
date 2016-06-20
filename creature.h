@@ -12,6 +12,7 @@ protected:
     void setStartPosition(Board *_map);
     bool collisionCreatureStart(Board *_map);
     void Dead();
+    float Range=100;
 public:
     Creature(Board *_map, float _speed, int _maxHp, int _width, int _height);
     virtual ~Creature();

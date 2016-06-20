@@ -4,6 +4,8 @@
 
 class Sniper : public Enemy
 {
+private:
+    int virtual direction(Board* _map);
 public:
     Sniper(Board *_map, float _speed, int _maxHp, int _width, int _height);
     virtual ~Sniper();

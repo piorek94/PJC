@@ -15,7 +15,9 @@ public:
 
 private:
     Board *map;
-    int numberOfEnemies;
+    int numberOfBazookers;
+    int numberOfPistolers;
+    int numberOfSnipers;
     void setEnemies();
 };
 
