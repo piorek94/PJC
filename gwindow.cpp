@@ -23,7 +23,7 @@ GWindow::GWindow()
     sniper=NULL;
 //    bazooka=NULL;
 //    pistol=NULL;
-//    sniperrifle=NULL;
+    sniperrifle=NULL;
 }
 
 bool GWindow::init()

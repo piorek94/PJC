@@ -15,7 +15,7 @@ Pistoler::~Pistoler()
 
 int Pistoler::direction(Board *_map)
 {
-    if(this->CanSee(_map))
+    if(this->CanSee(_map,getPlayerPtr(_map)))
     {
         int Xc=X+Width/2;
         int Yc=Y+Height/2;
