@@ -91,10 +91,10 @@ void GWindow::timerUpdate()
 {
     if( !(game->lose() || game->win()) )
     {
-    game->updateGame();
-    showBackground();
-    showObstacles();
-    showMobiles();
+        game->updateGame();
+        showBackground();
+        showObstacles();
+        showMobiles();
     }
     else if(game->win())
     {
@@ -133,8 +133,9 @@ void GWindow::showObstacles()
 
 void GWindow::showMobiles()
 {
-    Creature *tmp;
-    Enemy *tmp1;
+    Creature *tmpCreature;
+    Player *tmpPlayer;
+    Enemy *tmpEnemy;
     Sniper *tmpSniper;
     SDL_Rect dts;
     for(int i=0;i<game->getMapPtr()->getNumberOfMobiles();i++)
@@ -144,28 +145,29 @@ void GWindow::showMobiles()
         dts.w=game->getMapPtr()->getMobile(i)->getWidth();
         dts.h=game->getMapPtr()->getMobile(i)->getHeight();
 
-        if(typeid(*(game->getMapPtr()->getMobile(i)))==typeid(Player))
+        tmpCreature=dynamic_cast<Creature*>(game->getMapPtr()->getMobile(i));
+        if(tmpCreature)
         {
-            SDL_BlitScaled(player,NULL,screenSurface,&dts);
-        }
-        tmp1=dynamic_cast<Enemy*>(game->getMapPtr()->getMobile(i));
-        if(tmp1)
-        {
-            tmpSniper=dynamic_cast<Sniper*>(game->getMapPtr()->getMobile(i));
-            if(tmpSniper)
+            tmpPlayer=dynamic_cast<Player*>(game->getMapPtr()->getMobile(i));
+            tmpEnemy=dynamic_cast<Enemy*>(game->getMapPtr()->getMobile(i));
+            if(tmpPlayer)
             {
-                SDL_BlitScaled(sniper,NULL,screenSurface,&dts);
+                SDL_BlitScaled(player,NULL,screenSurface,&dts);
             }
-            else
+            else if(tmpEnemy)
             {
-                SDL_BlitScaled(enemy,NULL,screenSurface,&dts);
+                tmpSniper=dynamic_cast<Sniper*>(game->getMapPtr()->getMobile(i));
+                if(tmpSniper)
+                {
+                    SDL_BlitScaled(sniper,NULL,screenSurface,&dts);
+                }
+                else
+                {
+                    SDL_BlitScaled(enemy,NULL,screenSurface,&dts);
+                }
             }
-        }               
-        tmp=dynamic_cast<Creature*>(game->getMapPtr()->getMobile(i));
-        if(tmp)
-        {
-            showHp(tmp);
-            ShowWeapons(tmp);
+            showHp(tmpCreature);
+            ShowWeapons(tmpCreature);
         }
     }
 }

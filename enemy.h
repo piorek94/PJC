@@ -18,7 +18,6 @@ public:
     int virtual direction(Board* _map)=0;
     void virtual move(Board *_map)=0;
     void shoot();
-    void setWeapon();
 };
 
 #endif // ENEMY_H

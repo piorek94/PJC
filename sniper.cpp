@@ -9,7 +9,7 @@ Sniper::Sniper(Board *_map, float _speed, int _maxHp, int _width, int _height)
 
 Sniper::~Sniper()
 {
-
+    delete Weapon;
 }
 
 int Sniper::direction(Board *_map)

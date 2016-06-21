@@ -3,6 +3,8 @@
 #include "bazooka.h"
 #include "sniperrifle.h"
 
+
+
 Player::Player(Board *_map, float _speed, int _maxHp, int _width, int _height)
     :Creature(_map,_speed,_maxHp,_width,_height)
 {
@@ -14,7 +16,11 @@ Player::Player(Board *_map, float _speed, int _maxHp, int _width, int _height)
 
 Player::~Player()
 {
-
+    for(int i=0;i<(int)Weapons.size();i++)
+    {
+        delete Weapons.at(i);
+    }
+    Weapons.clear();
 }
 
 void Player::move(Board *_map)
@@ -56,7 +62,43 @@ void Player::shoot()
 
 }
 
-void Player::setWeapon()
+void Player::ChangeWeapon()
 {
+    if(pistolOn)
+    {
+        Pistol* tmp;
+        for(int i=0;i<(int)Weapons.size();i++)
+        {
+            tmp=dynamic_cast<Pistol*>(Weapons.at(i));
+            if(tmp)
+            {
+                Weapon=Weapons.at(i);
+            }
+        }
+    }
+    else if(bazookaOn)
+    {
+        Bazooka* tmp;
+        for(int i=0;i<(int)Weapons.size();i++)
+        {
+            tmp=dynamic_cast<Bazooka*>(Weapons.at(i));
+            if(tmp)
+            {
+                Weapon=Weapons.at(i);
+            }
+        }
+    }
+    else if(sniperrifleOn)
+    {
+        SniperRifle* tmp;
+        for(int i=0;i<(int)Weapons.size();i++)
+        {
+            tmp=dynamic_cast<SniperRifle*>(Weapons.at(i));
+            if(tmp)
+            {
+                Weapon=Weapons.at(i);
+            }
+        }
+    }
 
 }

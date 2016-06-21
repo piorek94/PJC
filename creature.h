@@ -19,7 +19,6 @@ public:
     Creature(Board *_map, float _speed, int _maxHp, int _width, int _height);
     virtual ~Creature();
     virtual void shoot()=0;
-    virtual void setWeapon()=0;
     virtual void move(Board *_map)=0;
     void checkField(Board *_map);
     int getHp();

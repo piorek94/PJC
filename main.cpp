@@ -8,11 +8,14 @@ bool move_up = false;
 bool move_down = false;
 bool move_right = false;
 bool move_left = false;
+bool pistolOn = false;
+bool sniperrifleOn = false;
+bool bazookaOn = true;
 
 const Uint8 * keystate = SDL_GetKeyboardState( NULL );
-
+SDL_Event change;
 int main( int argc, char* args[] )
-{    
+{
     mainWindow=new GWindow();
     if(!mainWindow->init())
     {
@@ -79,6 +82,27 @@ Uint32 callback(Uint32 interval, void *param)
     else{
         move_down = false;
     }
+    if ( keystate[ SDL_SCANCODE_1 ] )
+    {
+        pistolOn=true;
+        bazookaOn=false;
+        sniperrifleOn=false;
+    }
+    if ( keystate[ SDL_SCANCODE_2 ] )
+    {
+        pistolOn=false;
+        bazookaOn=true;
+        sniperrifleOn=false;
+    }
+    if ( keystate[ SDL_SCANCODE_3 ] )
+    {
+        pistolOn=false;
+        bazookaOn=false;
+        sniperrifleOn=true;
+    }
+
+
+
     mainWindow->timerUpdate();
     return interval;
 }

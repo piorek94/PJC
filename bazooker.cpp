@@ -11,7 +11,7 @@ Bazooker::Bazooker(Board *_map, float _speed, int _maxHp, int _width, int _heigh
 
 Bazooker::~Bazooker()
 {
-
+    delete Weapon;
 }
 
 int Bazooker::direction(Board *_map)

@@ -11,7 +11,7 @@ Pistoler::Pistoler(Board *_map, float _speed, int _maxHp, int _width, int _heigh
 
 Pistoler::~Pistoler()
 {
-
+    delete Weapon;
 }
 
 int Pistoler::direction(Board *_map)

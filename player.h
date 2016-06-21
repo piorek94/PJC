@@ -8,6 +8,9 @@ extern bool move_up;
 extern bool move_down;
 extern bool move_right;
 extern bool move_left;
+extern bool pistolOn;
+extern bool sniperrifleOn;
+extern bool bazookaOn;
 
 class Player : public Creature
 {
@@ -16,9 +19,8 @@ private:
 public:
     Player(Board *_map, float _speed, int _maxHp, int _width, int _height);
     virtual ~Player();
-//    void setActuallWeapon(TypeWeapon* _typeWeapon);
     void move(Board *_map);
     void shoot();
-    void setWeapon();
+    void ChangeWeapon();
 };
 #endif // PLAYER_H

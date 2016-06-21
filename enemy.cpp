@@ -19,11 +19,6 @@ void Enemy::shoot()
 
 }
 
-void Enemy::setWeapon()
-{
-
-}
-
 bool Enemy::CanSee(Board *_map, Player *_player)
 {
     if(_player)
@@ -35,7 +30,7 @@ bool Enemy::CanSee(Board *_map, Player *_player)
         int Ye=Y+Height/2;
         tmpX=_player->getX()+(_player->getWidth())/2;
         tmpY=_player->getY()+(_player->getHeight())/2;
-        if(Ye-tmpY<2)//jesli sa w tym samym y
+        if(abs(Ye-tmpY)<=1)//jesli sa w tym samym y
         {
             y=Ye;
             if(Xe<=tmpX)
@@ -60,18 +55,10 @@ bool Enemy::CanSee(Board *_map, Player *_player)
                             visible=false;
                         }
                     }
-                    if(visible==false)
-                    {
-                        break;
-                    }
-                }
-                if(visible==false)
-                {
-                    break;
                 }
             }
         }
-        else if(X-tmpX<2)//jesli sa w tym samym x
+        else if(abs(Xe-tmpX)<=1)//jesli sa w tym samym x
         {
             x=Xe;
             if(Ye<=tmpY)
@@ -84,7 +71,7 @@ bool Enemy::CanSee(Board *_map, Player *_player)
                 y_min=tmpY;
                 y_max=Ye;
             }
-            for(float i=y_min;i<=y_max;i+=15)
+            for(int i=y_min;i<=y_max;i+=15)
             {
                 for(int j=0;j<_map->getNumberOfObstacle();j++)
                 {
@@ -96,14 +83,6 @@ bool Enemy::CanSee(Board *_map, Player *_player)
                             visible=false;
                         }
                     }
-                    if(visible==false)
-                    {
-                        break;
-                    }
-                }
-                if(visible==false)
-                {
-                    break;
                 }
             }
         }
@@ -125,7 +104,7 @@ bool Enemy::CanSee(Board *_map, Player *_player)
                     y_max=Ye;
                 }
 
-                for(float i=y_min;i<=y_max;i+=4)
+                for(int i=y_min;i<=y_max;i+=4)
                 {
                     x=(i-b)/a;
                     for(int j=0;j<_map->getNumberOfObstacle();j++)
@@ -138,14 +117,6 @@ bool Enemy::CanSee(Board *_map, Player *_player)
                                 visible=false;
                             }
                         }
-                        if(visible==false)
-                        {
-                            break;
-                        }
-                    }
-                    if(visible==false)
-                    {
-                        break;
                     }
                 }
             }
@@ -161,7 +132,7 @@ bool Enemy::CanSee(Board *_map, Player *_player)
                     x_min=tmpX;
                     x_max=Xe;
                 }
-                for(float i=x_min;i<=x_max;i+=4)
+                for(int i=x_min;i<=x_max;i+=4)
                 {
                     y=a*i+b;
                     for(int j=0;j<_map->getNumberOfObstacle();j++)
@@ -174,14 +145,6 @@ bool Enemy::CanSee(Board *_map, Player *_player)
                                 visible=false;
                             }
                         }
-                        if(visible==false)
-                        {
-                            break;
-                        }
-                    }
-                    if(visible==false)
-                    {
-                        break;
                     }
                 }
             }
