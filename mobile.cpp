@@ -1,6 +1,7 @@
 #include "mobile.h"
 #include "board.h"
 #include "creature.h"
+#include "obstacle.h"
 
 Mobile::Mobile(float _speed, int _width, int _height)
 {
@@ -156,6 +157,26 @@ bool Mobile::checkCollisionRight(Board *_map)
             {
                 return true;
             }
+        }
+    }
+    return false;
+}
+
+bool Mobile::isOn(float _xc, float _yc, Object *_field)
+{
+    Obstacle *obst;
+    Creature *crea;
+    crea=dynamic_cast<Creature*>(_field);
+    obst=dynamic_cast<Obstacle*>(_field);
+    if(crea || obst)
+    {
+        float TopO=_field->getY();
+        float BotO=TopO+_field->getHeight();
+        float LefO=_field->getX();
+        float RigO=LefO+_field->getWidth();
+        if( ( _xc>=LefO && _xc<=RigO ) && ( _yc>=TopO && _yc<=BotO ) )
+        {
+            return true;
         }
     }
     return false;

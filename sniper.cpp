@@ -13,7 +13,7 @@ Sniper::~Sniper()
 
 int Sniper::direction(Board *_map)
 {
-return 0;
+    return 0;
 }
 
 void Sniper::move(Board *_map)

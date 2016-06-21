@@ -59,35 +59,31 @@ bool Creature::collisionCreatureStart(Board *_map)
         return true;
     }
 
-    Creature *tmp;
+    float X_c=X+Width/2;
+    float Y_c=Y+Height/2;
+    Object *obj;
     for(int i=0; i<_map->getNumberOfMobiles();i++)
     {
-        tmp=dynamic_cast<Creature*>(_map->getMobile(i));
-        if(this!=_map->getMobile(i) && tmp)
-        {
-            int TopC=_map->getMobile(i)->getY();
-            int BotC=TopC+_map->getMobile(i)->getHeight();
-            int LefC=_map->getMobile(i)->getX();
-            int RigC=LefC+_map->getMobile(i)->getWidth();
-            if(!(X>=RigC||X+Width<=LefC||Y>=BotC||Y+Height<=TopC))
+        obj=_map->getMobile(i);
+
+            if(isOn(X_c,Y_c,obj))
             {
+                obj=NULL;
                 return true;
             }
-        }
     }
 
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
         if(_map->getObstacle(i)->CanPass()==false)
         {
-            int TopO=_map->getObstacle(i)->getY();
-            int BotO=TopO+_map->getObstacle(i)->getHeight();
-            int LefO=_map->getObstacle(i)->getX();
-            int RigO=LefO+_map->getObstacle(i)->getWidth();
-            if(!(X>=RigO||X+Width<=LefO||Y>=BotO||Y+Height<=TopO))
-            {
-                return true;
-            }
+            obj=_map->getObstacle(i);
+
+                if(isOn(X_c,Y_c,obj))
+                {
+                    obj=NULL;
+                    return true;
+                }
         }
     }
     return false;
@@ -96,26 +92,25 @@ bool Creature::collisionCreatureStart(Board *_map)
 void Creature::checkField(Board *_map)
 {
     this->Dead();
-    int X_c=X+Width/2;
-    int Y_c=Y+Height/2;
+    float X_c=X+Width/2;
+    float Y_c=Y+Height/2;
     bool condition=false;
+    Object *obj;
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
-        int TopO=_map->getObstacle(i)->getY();
-        int BotO=TopO+_map->getObstacle(i)->getHeight();
-        int LefO=_map->getObstacle(i)->getX();
-        int RigO=LefO+_map->getObstacle(i)->getWidth();
-        if( ( X_c>=LefO && X_c<=RigO ) && ( Y_c>=TopO && Y_c<=BotO ) )
-        {
-            condition=true;
-            _map->getObstacle(i)->affect(this,condition);
-            return;
-        }
-        else
-        {
-            condition=false;
-            _map->getObstacle(i)->affect(this,condition);
-        }
+        obj=_map->getObstacle(i);
+
+            if( this->isOn(X_c,Y_c,obj) )
+            {
+                condition=true;
+                _map->getObstacle(i)->affect(this,condition);
+                return;
+            }
+            else
+            {
+                condition=false;
+                _map->getObstacle(i)->affect(this,condition);
+            }
     }
 }
 

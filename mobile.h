@@ -12,12 +12,14 @@ protected:
     bool checkCollisionDown(Board *_map);
     bool checkCollisionRight(Board *_map);
     bool checkCollisionLeft(Board *_map);
+    bool isOn(float _xc, float _yc, Object *_field);
 public:
     Mobile(float _speed, int _width, int _height);
     virtual ~Mobile();
     bool getToRemove();
     virtual void move(Board *_map)=0;
     virtual void checkField(Board *_map)=0;
+//    bool isOn(float _xc, float _yc, Object *_field);
 };
 
 #endif // MOBILE_H

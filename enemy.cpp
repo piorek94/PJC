@@ -27,14 +27,171 @@ void Enemy::setWeapon()
 bool Enemy::CanSee(Board *_map)
 {
     Player *tmp;
-    for(int i=0;i<_map->getNumberOfMobiles();i++)
+    bool visible=true;//
+    Object *obj;//
+    int y,y_min,y_max,x,x_min,x_max,a,b,tmpX,tmpY;
+    int Xe=X+Width/2;
+    int Ye=Y+Height/2;
+    for(int m=0;m<_map->getNumberOfMobiles();m++)
     {
-        tmp=dynamic_cast<Player*>(_map->getMobile(i));
+        tmp=dynamic_cast<Player*>(_map->getMobile(m));
         if(tmp)
         {
-            float tmpX=_map->getMobile(i)->getX()+(_map->getMobile(i)->getWidth())/2;
-            float tmpY=_map->getMobile(i)->getY()+(_map->getMobile(i)->getHeight())/2;
-            if(Range>=sqrt((tmpX-X)*(tmpX-X)+(tmpY-Y)*(tmpY-Y)))
+            tmpX=_map->getMobile(m)->getX()+(_map->getMobile(m)->getWidth())/2;
+            tmpY=_map->getMobile(m)->getY()+(_map->getMobile(m)->getHeight())/2;
+
+            if(Ye-tmpY<2)//jesli sa w tym samym y
+            {
+                y=Ye;
+                if(Xe<=tmpX)
+                {
+                    x_min=Xe;
+                    x_max=tmpX;
+                }
+                else
+                {
+                    x_min=tmpX;
+                    x_max=Xe;
+                }
+                for(int i=x_min;i<x_max;i+=10)
+                {
+                    for(int j=0;j<_map->getNumberOfObstacle();j++)
+                    {
+                        if(_map->getObstacle(j)->CanPass()==false)
+                        {
+                            obj=_map->getObstacle(j);
+                            if(isOn(i,y,obj))
+                            {
+                                visible=false;
+                            }
+                        }
+//                        if(visible==false)
+//                        {
+//                            break;
+//                        }
+                    }
+//                    if(visible==false)
+//                    {
+//                        break;
+//                    }
+                }
+            }
+            else if(X-tmpX<2)//jesli sa w tym samym x
+            {
+                x=Xe;
+                if(Ye<=tmpY)
+                {
+                    y_min=Ye;
+                    y_max=tmpY;
+                }
+                else
+                {
+                    y_min=tmpY;
+                    y_max=Ye;
+                }
+                for(float i=y_min;i<=y_max;i+=15)
+                {
+                    for(int j=0;j<_map->getNumberOfObstacle();j++)
+                    {
+                        if(_map->getObstacle(j)->CanPass()==false)
+                        {
+                            obj=_map->getObstacle(j);
+                            if(isOn(x,i,obj))
+                            {
+                                visible=false;
+                            }
+                        }
+//                        if(visible==false)
+//                        {
+//                            break;
+//                        }
+                    }
+//                    if(visible==false)
+//                    {
+//                        break;
+//                    }
+                }
+            }
+            else
+            {
+                a=(Ye-tmpY)/(Xe-tmpX);
+                b=Ye-a*Xe;
+
+                if(abs(a)>=1)//jesli przyrost y jest wiekszy niz x to zmienna to y
+                {
+                    if(Ye<=tmpY)
+                    {
+                        y_min=Ye;
+                        y_max=tmpY;
+                    }
+                    else
+                    {
+                        y_min=tmpY;
+                        y_max=Ye;
+                    }
+
+                    for(float i=y_min;i<=y_max;i+=4)
+                    {
+                        x=(i-b)/a;
+                        for(int j=0;j<_map->getNumberOfObstacle();j++)
+                        {
+                            if(_map->getObstacle(j)->CanPass()==false)
+                            {
+                                obj=_map->getObstacle(j);
+                                if(isOn(x,i,obj))
+                                {
+                                    visible=false;
+                                }
+                            }
+//                            if(visible==false)
+//                            {
+//                                break;
+//                            }
+                        }
+//                        if(visible==false)
+//                        {
+//                            break;
+//                        }
+                    }
+                }
+                else
+                {
+                    if(Xe<=tmpX)
+                    {
+                        x_min=Xe;
+                        x_max=tmpX;
+                    }
+                    else
+                    {
+                        x_min=tmpX;
+                        x_max=Xe;
+                    }
+                    for(float i=x_min;i<=x_max;i+=4)
+                    {
+                        y=a*i+b;
+                        for(int j=0;j<_map->getNumberOfObstacle();j++)
+                        {
+                            if(_map->getObstacle(j)->CanPass()==false)
+                            {
+                                obj=_map->getObstacle(j);
+                                if(isOn(i,y,obj))
+                                {
+                                    visible=false;
+                                }
+                            }
+//                            if(visible==false)
+//                            {
+//                                break;
+//                            }
+                        }
+//                        if(visible==false)
+//                        {
+//                            break;
+//                        }
+                    }
+                }
+            }
+            if(visible)
             {
                 dst_X=tmpX;
                 dst_Y=tmpY;
@@ -44,7 +201,6 @@ bool Enemy::CanSee(Board *_map)
             {
                 return false;
             }
-
         }
     }
     return false;

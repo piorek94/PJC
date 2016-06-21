@@ -18,10 +18,10 @@ private:
     SDL_Surface *mud;
     SDL_Surface *lose;
     SDL_Surface *win;
-//    SDL_Surface *sniper;
-//    SDL_Surface *bazooka;
-//    SDL_Surface *pistol;
-//    SDL_Surface *sniperrifle;
+    SDL_Surface *sniper;
+    SDL_Surface *bazooka;
+    SDL_Surface *pistol;
+    SDL_Surface *sniperrifle;
     Game* game;
     SDL_Surface* loadSurface( std::string path );
     void showObstacles();

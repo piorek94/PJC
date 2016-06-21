@@ -1,7 +1,9 @@
 #include "gwindow.h"
 #include <typeinfo>
 #include "player.h"
-#include "enemy.h"
+#include "sniper.h"
+#include "bazooker.h"
+#include "pistoler.h"
 #include "wall.h"
 #include "barbwire.h"
 #include "mud.h"
@@ -18,7 +20,7 @@ GWindow::GWindow()
     mud=NULL;
     lose=NULL;
     win=NULL;
-//    sniper=NULL;
+    sniper=NULL;
 //    bazooka=NULL;
 //    pistol=NULL;
 //    sniperrifle=NULL;
@@ -61,7 +63,7 @@ GWindow::~GWindow()
     SDL_FreeSurface(mud);
     SDL_FreeSurface(lose);
     SDL_FreeSurface(win);
-//    SDL_FreeSurface(sniper);
+    SDL_FreeSurface(sniper);
 //    SDL_FreeSurface(bazooka);
 //    SDL_FreeSurface(pistol);
 //    SDL_FreeSurface(sniperrifle);
@@ -74,7 +76,7 @@ GWindow::~GWindow()
     mud=NULL;
     lose=NULL;
     win=NULL;
-//    sniper=NULL;
+    sniper=NULL;
 //    bazooka=NULL;
 //    pistol=NULL;
 //    sniperrifle=NULL;
@@ -130,6 +132,7 @@ void GWindow::showMobiles()
 {
     Creature *tmp;
     Enemy *tmp1;
+    Sniper *tmpSniper;
     SDL_Rect dts;
     for(int i=0;i<game->getMapPtr()->getNumberOfMobiles();i++)
     {
@@ -137,6 +140,7 @@ void GWindow::showMobiles()
         dts.y=game->getMapPtr()->getMobile(i)->getY();
         dts.w=game->getMapPtr()->getMobile(i)->getWidth();
         dts.h=game->getMapPtr()->getMobile(i)->getHeight();
+
         if(typeid(*(game->getMapPtr()->getMobile(i)))==typeid(Player))
         {
             SDL_BlitScaled(player,NULL,screenSurface,&dts);
@@ -144,8 +148,16 @@ void GWindow::showMobiles()
         tmp1=dynamic_cast<Enemy*>(game->getMapPtr()->getMobile(i));
         if(tmp1)
         {
-            SDL_BlitScaled(enemy,NULL,screenSurface,&dts);
-        }
+            tmpSniper=dynamic_cast<Sniper*>(game->getMapPtr()->getMobile(i));
+            if(tmpSniper)
+            {
+                SDL_BlitScaled(sniper,NULL,screenSurface,&dts);
+            }
+            else
+            {
+                SDL_BlitScaled(enemy,NULL,screenSurface,&dts);
+            }
+        }               
         tmp=dynamic_cast<Creature*>(game->getMapPtr()->getMobile(i));
         if(tmp)
         {
@@ -195,12 +207,12 @@ bool  GWindow::loadMedia()
     barbwire = loadSurface("barbwire.bmp");
     lose = loadSurface("lose.bmp");
     win = loadSurface("win.bmp");
-    //sniper = loadSurface("sniper.bmp");
-    //bazooka = loadSurface("dupa.bmp");
+    sniper = loadSurface("sniper.bmp");
+    //bazooka = loadSurface("bazooka.bmp");
     //pistol = loadSurface("pistol.bmp");
     //sniperrifle = loadSurface("sniperrifle");
 
-    if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL || lose == NULL || win == NULL /*|| sniper == NULL || bazooka == NULL ||pistol == NULL || sniperrifle == NULL*/)
+    if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL || lose == NULL || win == NULL || sniper == NULL /*|| bazooka == NULL ||pistol == NULL || sniperrifle == NULL*/)
     {
         std::cout<<"Failed to load texture image!\n";
         success =false;
