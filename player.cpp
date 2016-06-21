@@ -1,9 +1,15 @@
 #include "player.h"
+#include "pistol.h"
+#include "bazooka.h"
+#include "sniperrifle.h"
 
 Player::Player(Board *_map, float _speed, int _maxHp, int _width, int _height)
     :Creature(_map,_speed,_maxHp,_width,_height)
 {
-
+    Weapons.push_back(new Pistol());
+    Weapons.push_back(new Bazooka());
+    Weapons.push_back(new SniperRifle());
+    Weapon=Weapons.at(0);
 }
 
 Player::~Player()

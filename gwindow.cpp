@@ -4,6 +4,9 @@
 #include "sniper.h"
 #include "bazooker.h"
 #include "pistoler.h"
+#include "pistol.h"
+#include "bazooka.h"
+#include "sniperrifle.h"
 #include "wall.h"
 #include "barbwire.h"
 #include "mud.h"
@@ -21,8 +24,8 @@ GWindow::GWindow()
     lose=NULL;
     win=NULL;
     sniper=NULL;
-//    bazooka=NULL;
-//    pistol=NULL;
+    bazooka=NULL;
+    pistol=NULL;
     sniperrifle=NULL;
 }
 
@@ -64,9 +67,9 @@ GWindow::~GWindow()
     SDL_FreeSurface(lose);
     SDL_FreeSurface(win);
     SDL_FreeSurface(sniper);
-//    SDL_FreeSurface(bazooka);
-//    SDL_FreeSurface(pistol);
-//    SDL_FreeSurface(sniperrifle);
+    SDL_FreeSurface(bazooka);
+    SDL_FreeSurface(pistol);
+    SDL_FreeSurface(sniperrifle);
     screenSurface=NULL;
     background=NULL;
     player=NULL;
@@ -77,9 +80,9 @@ GWindow::~GWindow()
     lose=NULL;
     win=NULL;
     sniper=NULL;
-//    bazooka=NULL;
-//    pistol=NULL;
-//    sniperrifle=NULL;
+    bazooka=NULL;
+    pistol=NULL;
+    sniperrifle=NULL;
     SDL_DestroyWindow( window );
     SDL_Quit();
 }
@@ -162,6 +165,7 @@ void GWindow::showMobiles()
         if(tmp)
         {
             showHp(tmp);
+            ShowWeapons(tmp);
         }
     }
 }
@@ -208,11 +212,12 @@ bool  GWindow::loadMedia()
     lose = loadSurface("lose.bmp");
     win = loadSurface("win.bmp");
     sniper = loadSurface("sniper.bmp");
-    //bazooka = loadSurface("bazooka.bmp");
-    //pistol = loadSurface("pistol.bmp");
-    //sniperrifle = loadSurface("sniperrifle");
+    bazooka = loadSurface("bazooka.bmp");
+    pistol = loadSurface("pistol.bmp");
+    sniperrifle = loadSurface("sniperrifle.bmp");
 
-    if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL || lose == NULL || win == NULL || sniper == NULL /*|| bazooka == NULL ||pistol == NULL || sniperrifle == NULL*/)
+    if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL || lose == NULL || win == NULL
+            || sniper == NULL /*|| bazooka == NULL ||pistol == NULL */|| sniperrifle == NULL)
     {
         std::cout<<"Failed to load texture image!\n";
         success =false;
@@ -235,3 +240,39 @@ SDL_Surface* GWindow::loadSurface( std::string path )
     }
     return newSurface;
 }
+
+void GWindow::ShowWeapons(Creature *_creature)
+{
+    SniperRifle* snip;
+    Bazooka* baz;
+    Pistol* pis;
+    snip=dynamic_cast<SniperRifle*>(_creature->getWeponPtr());
+    baz=dynamic_cast<Bazooka*>(_creature->getWeponPtr());
+    pis=dynamic_cast<Pistol*>(_creature->getWeponPtr());
+    SDL_Rect tmp;
+    tmp.w=_creature->getWeponPtr()->getWidth();
+    tmp.h=_creature->getWeponPtr()->getHeight();
+    tmp.x=_creature->getX()+_creature->getWidth()/2;
+    tmp.y=_creature->getY()+5;
+    if(snip)
+    {
+        tmp.x=_creature->getX()+_creature->getWidth()/2-4;
+        tmp.y=_creature->getY()+5;
+        SDL_BlitScaled(sniperrifle,NULL,screenSurface,&tmp);
+    }
+    if(baz)
+    {
+        tmp.x=_creature->getX();
+        tmp.y=_creature->getY();
+        SDL_BlitScaled(bazooka,NULL,screenSurface,&tmp);
+    }
+    if(pis)
+    {
+        tmp.x=_creature->getX()+_creature->getWidth()-4;
+        tmp.y=_creature->getY()+_creature->getHeight()/2-6;
+        SDL_BlitScaled(pistol,NULL,screenSurface,&tmp);
+    }
+}
+
+
+

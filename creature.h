@@ -2,6 +2,7 @@
 #define CREATURE_H
 
 #include "mobile.h"
+#include "typeweapon.h"
 
 class Creature : public Mobile
 {
@@ -12,6 +13,7 @@ protected:
     void setStartPosition(Board *_map);
     bool collisionCreatureStart(Board *_map);
     void Dead();
+    TypeWeapon* Weapon;
     int Range=100;
 public:
     Creature(Board *_map, float _speed, int _maxHp, int _width, int _height);
@@ -25,6 +27,7 @@ public:
     int getMaxHp();
     void setSpeed(float _speed);
     float getMaxSpeed();
+    TypeWeapon* getWeponPtr();
 };
 
 #endif // CREATURE_H

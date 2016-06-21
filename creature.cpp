@@ -6,6 +6,7 @@
 Creature::Creature(Board *_map, float _speed, int _maxHp, int _width, int _height)
     :Mobile(_speed,_width,_height)
 {
+    Weapon=NULL;
     MaxSpeed=_speed;
     MaxHp=_maxHp;
     Hp=_maxHp;
@@ -131,3 +132,7 @@ void Creature::setStartPosition(Board *_map)
     }
 }
 
+TypeWeapon* Creature::getWeponPtr()
+{
+    return Weapon;
+}

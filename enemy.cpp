@@ -206,7 +206,7 @@ bool Enemy::inRange(Player *_player)
     {
         int tmpX=_player->getX()+(_player->getWidth())/2;
         int tmpY=_player->getY()+(_player->getHeight())/2;
-        if(Range> sqrt( pow((X-tmpX),2) + pow((Y-tmpY),2) ) )
+        if(Weapon->getShootRange()> sqrt( pow((X-tmpX),2) + pow((Y-tmpY),2) ) )
         {
             return true;
         }

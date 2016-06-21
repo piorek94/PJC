@@ -30,6 +30,7 @@ private:
     void showWin();
     void showLose();
     void showHp(Creature *_creature);
+    void ShowWeapons(Creature *_creature);
 public:
     bool init();
     bool loadMedia();

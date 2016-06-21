@@ -1,11 +1,12 @@
 #include "pistoler.h"
+#include "pistol.h"
 #include <ctime>
 #include <cstdlib>
 
 Pistoler::Pistoler(Board *_map, float _speed, int _maxHp, int _width, int _height)
     :Enemy(_map,_speed,_maxHp,_width, _height)
 {
-
+    Weapon=new Pistol();
 }
 
 Pistoler::~Pistoler()
