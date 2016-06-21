@@ -100,9 +100,6 @@ Uint32 callback(Uint32 interval, void *param)
         bazookaOn=false;
         sniperrifleOn=true;
     }
-
-
-
     mainWindow->timerUpdate();
     return interval;
 }
