@@ -53,3 +53,9 @@ float Bullet::calculateAngle(float _aimX, float _aimY, float _startX, float _sta
         }
     }
 }
+
+void Bullet::move(Board *_map)
+{
+    X+=cos(Angle)*Speed;
+    Y+=sin(Angle)*Speed;
+}

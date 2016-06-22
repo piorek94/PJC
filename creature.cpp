@@ -1,5 +1,6 @@
 #include "creature.h"
 #include "board.h"
+#include "bullet.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -96,23 +97,39 @@ void Creature::checkField(Board *_map)
     float X_c=X+Width/2;
     float Y_c=Y+Height/2;
     bool condition=false;
-    Object *obj;
+    Object *obj=NULL;
+    //w razie jakby tamto nie działało z bulletów reducehp
+//    Bullet *bull;
+//    for(int i=0;i<_map->getNumberOfMobiles();i++)
+//    {
+//        obj=_map->getMobile(i);
+//        if( this->isOn(X_c,Y_c,obj) )
+//        {
+//            bull=dynamic_cast<Bullet*>(_map->getMobile(i));
+//            if(bull)
+//            {
+//                bull->reduceHp(this);
+//                _map->removeMobile(i);
+//            }
+//        }
+//    }
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
         obj=_map->getObstacle(i);
 
-            if( this->isOn(X_c,Y_c,obj) )
-            {
-                condition=true;
-                _map->getObstacle(i)->affect(this,condition);
-                return;
-            }
-            else
-            {
-                condition=false;
-                _map->getObstacle(i)->affect(this,condition);
-            }
+        if( this->isOn(X_c,Y_c,obj) )
+        {
+            condition=true;
+            _map->getObstacle(i)->affect(this,condition);
+            return;
+        }
+        else
+        {
+            condition=false;
+            _map->getObstacle(i)->affect(this,condition);
+        }
     }
+
 }
 
 
