@@ -19,10 +19,11 @@ bool pistolOn = false;
 bool sniperrifleOn = false;
 bool bazookaOn = false;
 bool PlayerShootOn = false;
-float PlayerDstX = 0;
-float PlayerDstY = 0;
+int PlayerDstX = 0;
+int PlayerDstY = 0;
 
 const Uint8 * keystate = SDL_GetKeyboardState( NULL );
+void handleEvent(SDL_Event *e);
 int main( int argc, char* args[] )
 {
     mainWindow=new GWindow();
@@ -39,9 +40,9 @@ int main( int argc, char* args[] )
         else
         {
             timerGame = SDL_AddTimer(60, callback, NULL);
-            timerPistol = SDL_AddTimer(1000, callbackPistol, NULL);
-            timerBazooka = SDL_AddTimer(3000, callbackBazooka, NULL);
-            timerSniper = SDL_AddTimer(4000, callbackSniper, NULL);
+            timerPistol = SDL_AddTimer(500, callbackPistol, NULL);
+            timerBazooka = SDL_AddTimer(1500, callbackBazooka, NULL);
+            timerSniper = SDL_AddTimer(2000, callbackSniper, NULL);
 
             bool quit=false;
             SDL_Event e;
@@ -53,6 +54,7 @@ int main( int argc, char* args[] )
                     {
                         quit = true;
                     }
+                    handleEvent(&e);
                 }
             }
         }
@@ -64,7 +66,7 @@ int main( int argc, char* args[] )
 
 Uint32 callback(Uint32 interval, void *param)
 {
-    if( keystate[ SDL_SCANCODE_RIGHT ] )
+    if( keystate[ SDL_SCANCODE_D ] )
     {
         move_right = true;
     }
@@ -72,7 +74,7 @@ Uint32 callback(Uint32 interval, void *param)
         move_right = false;
     }
 
-    if( keystate[ SDL_SCANCODE_LEFT ] )
+    if( keystate[ SDL_SCANCODE_A ] )
     {
         move_left = true;
     }
@@ -80,7 +82,7 @@ Uint32 callback(Uint32 interval, void *param)
         move_left = false;
     }
 
-    if( keystate[ SDL_SCANCODE_UP ] )
+    if( keystate[ SDL_SCANCODE_W ] )
     {
         move_up = true;
     }
@@ -88,7 +90,7 @@ Uint32 callback(Uint32 interval, void *param)
         move_up = false;
     }
 
-    if( keystate[ SDL_SCANCODE_DOWN ] )
+    if( keystate[ SDL_SCANCODE_S ] )
     {
         move_down = true;
     }
@@ -133,4 +135,21 @@ Uint32 callbackSniper(Uint32 interval, void *param)
 {
     mainWindow->getGamePtr()->SniperShoot();
     return interval;
+}
+
+void handleEvent(SDL_Event *e)
+{
+    if(e->type == SDL_MOUSEMOTION)
+    {
+        SDL_GetMouseState( &PlayerDstX, &PlayerDstY );
+    }
+    if(e->type == SDL_MOUSEBUTTONDOWN)
+    {
+        PlayerShootOn=true;
+        SDL_GetMouseState( &PlayerDstX, &PlayerDstY );
+    }
+    if(e->type == SDL_MOUSEBUTTONUP)
+    {
+        PlayerShootOn=false;
+    }
 }

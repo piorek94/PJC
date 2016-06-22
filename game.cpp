@@ -36,15 +36,15 @@ void Game::setEnemies()
 {
     for(int i=0;i<numberOfBazookers;i++)
     {
-        map->addMobile(new Bazooker(map,1,1000, 30, 40));
+        map->addMobile(new Bazooker(map,1,100, 30, 40));
     }
     for(int i=0;i<numberOfPistolers;i++)
     {
-        map->addMobile(new Pistoler(map,2,1000, 20, 30));
+        map->addMobile(new Pistoler(map,2,100, 20, 30));
     }
     for(int i=0;i<numberOfSnipers;i++)
     {
-        map->addMobile(new Sniper(map,0,1000, 20, 30));
+        map->addMobile(new Sniper(map,0,100, 20, 30));
     }
 }
 

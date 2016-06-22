@@ -26,21 +26,21 @@ void Enemy::shoot(Board *_map)
             if((dst_X-Width/2)<=X-2)
             {
                 startY=Y+Height/2;
-                startX=X-4;
-            }
-            else if((dst_Y-Height/2)<=Y-2)
-            {
-                startY=Y-4;
-                startX=X+Width/2;
+                startX=X-6;
             }
             else if((dst_X-Width/2)>=X+Width+2)
             {
                 startY=Y+Height/2;
-                startX=X+Width+2;
+                startX=X+Width+6;
+            }
+            else if((dst_Y-Height/2)<=Y-2)
+            {
+                startY=Y-6;
+                startX=X+Width/2;
             }
             else if((dst_Y-Height/2)>=X+Height+2)
             {
-                startY=Y+Height+4;
+                startY=Y+Height+6;
                 startX=X+Width/2;
             }
             _map->addMobile(Weapon->CreateBullet(dst_X,dst_Y,startX,startY));
