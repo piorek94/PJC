@@ -47,6 +47,7 @@ void Game::setEnemies()
 void Game::updateGame()
 {
     Player* tmpPlayer;
+    Creature* tmpCreature;
     for (int i=0; i<map->getNumberOfMobiles(); i++)
     {
         if(map->getMobile(i)->getToRemove())
@@ -62,6 +63,11 @@ void Game::updateGame()
             if(tmpPlayer)
             {
                 tmpPlayer->ChangeWeapon();
+            }
+            tmpCreature=dynamic_cast<Creature*>(map->getMobile(i));
+            if(tmpCreature)
+            {
+                tmpCreature->shoot(map);
             }
         }
     }

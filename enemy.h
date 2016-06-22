@@ -17,7 +17,7 @@ public:
     virtual ~Enemy();
     int virtual direction(Board* _map)=0;
     void virtual move(Board *_map)=0;
-    void shoot();
+    void shoot(Board* _map);
 };
 
 #endif // ENEMY_H

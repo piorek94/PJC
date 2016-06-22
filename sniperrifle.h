@@ -7,6 +7,7 @@ class SniperRifle : public TypeWeapon
 public:
     SniperRifle();
     virtual ~SniperRifle();
+    Bullet* CreateBullet();
 };
 
 #endif // SNIPERRIFLE_H

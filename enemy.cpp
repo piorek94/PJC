@@ -14,9 +14,16 @@ Enemy::~Enemy()
 
 }
 
-void Enemy::shoot()
+void Enemy::shoot(Board *_map)
 {
-
+    Player *tmp=getPlayerPtr(_map);
+    if(inRange(tmp))
+    {
+        if(CanSee(_map,tmp))
+        {
+            _map->addMobile(Weapon->CreateBullet());
+        }
+    }
 }
 
 bool Enemy::CanSee(Board *_map, Player *_player)

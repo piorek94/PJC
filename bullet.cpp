@@ -1,10 +1,10 @@
 #include "bullet.h"
 #include "creature.h"
 #include <math.h>
-Bullet::Bullet(float _speed, int _width, int _height,int _damage, float _aimX, float _aimY, float _startX, float _startY, int _range)
+Bullet::Bullet(float _speed, int _width, int _height, float _aimX, float _aimY, float _startX, float _startY, int _range)
     :Mobile(_speed,_width,_height)
 {
-    Damage=_damage;
+    Damage=0;
     AimX=_aimX;
     AimY=_aimY;
     StartX=_startX;

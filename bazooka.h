@@ -7,6 +7,7 @@ class Bazooka : public TypeWeapon
 public:
     Bazooka();
     virtual ~Bazooka();
+    Bullet* CreateBullet();
 };
 
 #endif // BAZOOKA_H

@@ -57,7 +57,7 @@ void Player::move(Board *_map)
     }
 }
 
-void Player::shoot()
+void Player::shoot(Board *_map)
 {
 
 }

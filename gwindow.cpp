@@ -2,14 +2,14 @@
 #include <typeinfo>
 #include "player.h"
 #include "sniper.h"
-#include "bazooker.h"
-#include "pistoler.h"
 #include "pistol.h"
 #include "bazooka.h"
 #include "sniperrifle.h"
 #include "wall.h"
 #include "barbwire.h"
 #include "mud.h"
+#include "bullet.h"
+
 GWindow::GWindow()
 {
     game=new Game();
@@ -140,6 +140,7 @@ void GWindow::showMobiles()
     Player *tmpPlayer;
     Enemy *tmpEnemy;
     Sniper *tmpSniper;
+    Bullet *tmpBullet;
     SDL_Rect dts;
     for(int i=0;i<game->getMapPtr()->getNumberOfMobiles();i++)
     {
@@ -149,6 +150,7 @@ void GWindow::showMobiles()
         dts.h=game->getMapPtr()->getMobile(i)->getHeight();
 
         tmpCreature=dynamic_cast<Creature*>(game->getMapPtr()->getMobile(i));
+        tmpBullet=dynamic_cast<Bullet*>(game->getMapPtr()->getMobile(i));
         if(tmpCreature)
         {
             tmpPlayer=dynamic_cast<Player*>(game->getMapPtr()->getMobile(i));
@@ -171,6 +173,10 @@ void GWindow::showMobiles()
             }
             showHp(tmpCreature);
             ShowWeapons(tmpCreature);
+        }
+        else if(tmpBullet)
+        {
+            SDL_BlitScaled(wall,NULL,screenSurface,&dts);
         }
     }
 }

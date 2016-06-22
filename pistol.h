@@ -7,6 +7,7 @@ class Pistol : public TypeWeapon
 public:
     Pistol();
     virtual ~Pistol();
+    Bullet* CreateBullet();
 };
 
 #endif // PISTOL_H

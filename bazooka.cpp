@@ -1,4 +1,5 @@
 #include "bazooka.h"
+#include "bulletbazooka.h"
 
 Bazooka::Bazooka()
 {
@@ -10,4 +11,9 @@ Bazooka::Bazooka()
 Bazooka::~Bazooka()
 {
 
+}
+
+Bullet* Bazooka::CreateBullet()
+{
+    return new BulletBazooka(3,4,4,0,0,300,300,200);
 }

@@ -1,4 +1,5 @@
 #include "sniperrifle.h"
+#include "bulletsniper.h"
 
 SniperRifle::SniperRifle()
 {
@@ -10,4 +11,9 @@ SniperRifle::SniperRifle()
 SniperRifle::~SniperRifle()
 {
 
+}
+
+Bullet* SniperRifle::CreateBullet()
+{
+    return new BulletSniper(3,4,4,300,200,200,200,100);
 }

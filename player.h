@@ -20,7 +20,7 @@ public:
     Player(Board *_map, float _speed, int _maxHp, int _width, int _height);
     virtual ~Player();
     void move(Board *_map);
-    void shoot();
+    void shoot(Board *_map);
     void ChangeWeapon();
 };
 #endif // PLAYER_H

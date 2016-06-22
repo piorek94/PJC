@@ -1,4 +1,5 @@
 #include "pistol.h"
+#include "bulletpistol.h"
 
 Pistol::Pistol()
 {
@@ -10,4 +11,9 @@ Pistol::Pistol()
 Pistol::~Pistol()
 {
 
+}
+
+Bullet* Pistol::CreateBullet()
+{
+    return new BulletPistol(3,4,4,0,0,300,300,200);
 }
