@@ -33,6 +33,7 @@ private:
     void showHp(Creature *_creature);
     void ShowWeapons(Creature *_creature);
 public:
+    Game *getGamePtr();
     bool init();
     bool loadMedia();
     GWindow();

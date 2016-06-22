@@ -13,7 +13,7 @@ Pistol::~Pistol()
 
 }
 
-Bullet* Pistol::CreateBullet()
+Bullet* Pistol::CreateBullet(float _aimX, float _aimY, float _startX, float _startY)
 {
-    return new BulletPistol(3,4,4,0,0,300,300,200);
+    return new BulletPistol(8,2,2,4,_aimX,_aimY,_startX,_startY,ShootRange);
 }

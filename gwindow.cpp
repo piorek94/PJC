@@ -286,5 +286,8 @@ void GWindow::ShowWeapons(Creature *_creature)
     }
 }
 
-
+Game* GWindow::getGamePtr()
+{
+    return game;
+}
 

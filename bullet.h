@@ -15,7 +15,7 @@ protected:
     int BulletRange;
     float Angle;
 public:
-    Bullet(float _speed, int _width, int _height, float _aimX, float _aimY, float _startX, float _startY, int _range);
+    Bullet(float _speed, int _width, int _height, int _damage, float _aimX, float _aimY, float _startX, float _startY, int _range);
     virtual ~Bullet();
     void reduceHp(Creature* _creature);
     void move(Board *_map);

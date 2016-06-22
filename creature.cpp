@@ -99,24 +99,25 @@ void Creature::checkField(Board *_map)
     bool condition=false;
     Object *obj=NULL;
     //w razie jakby tamto nie działało z bulletów reducehp
-//    Bullet *bull;
-//    obj=this;
-//    float xc,yc;
-//    for(int i=0;i<_map->getNumberOfMobiles();i++)
-//    {
-//        bull=dynamic_cast<Bullet*>(_map->getMobile(i));
-//        if(bull)
-//        {
-//            xc=bull->getX()+(bull->getWidth())/2;
-//            yc=bull->getY()+(bull->getHeight())/2;
-//            if(this->isOn(xc,yc,obj))
-//            {
-//                bull->reduceHp(this);
-//                _map->removeMobile(i);//to nie musi byc koniecznie
-//                return;
-//            }
-//        }
-//    }
+    Bullet *bull;
+    obj=this;
+    float xc,yc;
+    for(int i=0;i<_map->getNumberOfMobiles();i++)
+    {
+        bull=dynamic_cast<Bullet*>(_map->getMobile(i));
+        if(bull)
+        {
+            xc=bull->getX()+(bull->getWidth())/2;
+            yc=bull->getY()+(bull->getHeight())/2;
+            if(this->isOn(xc,yc,obj))
+            {
+                bull->reduceHp(this);
+                //_map->removeMobile(i);//to nie musi byc koniecznie
+                return;
+            }
+        }
+    }
+    //dotąd
     for(int i=0;i<_map->getNumberOfObstacle();i++)
     {
         obj=NULL;

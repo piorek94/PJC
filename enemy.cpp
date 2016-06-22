@@ -21,7 +21,29 @@ void Enemy::shoot(Board *_map)
     {
         if(CanSee(_map,tmp))
         {
-            _map->addMobile(Weapon->CreateBullet());
+            float startX;
+            float startY;
+            if((dst_X-Width/2)<=X-2)
+            {
+                startY=Y+Height/2;
+                startX=X-4;
+            }
+            else if((dst_Y-Height/2)<=Y-2)
+            {
+                startY=Y-4;
+                startX=X+Width/2;
+            }
+            else if((dst_X-Width/2)>=X+Width+2)
+            {
+                startY=Y+Height/2;
+                startX=X+Width+2;
+            }
+            else if((dst_X-Height/2)>=X+Height+2)
+            {
+                startY=Y+Height+4;
+                startX=X+Width/2;
+            }
+            _map->addMobile(Weapon->CreateBullet(dst_X,dst_Y,startX,startY));
         }
     }
 }

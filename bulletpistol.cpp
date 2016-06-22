@@ -3,10 +3,10 @@
 #include "creature.h"
 #include "math.h"
 
-BulletPistol::BulletPistol(float _speed, int _width, int _height, float _aimX, float _aimY, float _startX, float _startY, int _range)
-    :Bullet(_speed,_width,_height,_aimX,_aimY,_startX,_startY,_range)
+BulletPistol::BulletPistol(float _speed, int _width, int _height, int _damage, float _aimX, float _aimY, float _startX, float _startY, int _range)
+    :Bullet(_speed,_width,_height,_damage,_aimX,_aimY,_startX,_startY,_range)
 {
-    Damage=20;
+
 }
 
 BulletPistol::~BulletPistol()
@@ -50,7 +50,7 @@ void BulletPistol::checkField(Board *_map)
             cre=dynamic_cast<Creature*>(_map->getMobile(i));
             if(cre)
             {
-                obj=_map->getObstacle(i);
+                obj=_map->getMobile(i);
                 if( this->isOn(X_c,Y_c,obj) )
                 {
                     //reduceHp(cre);//?????????????????????????????????????????

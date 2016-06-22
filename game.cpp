@@ -3,10 +3,14 @@
 #include "pistoler.h"
 #include "bazooker.h"
 #include "sniper.h"
+#include "pistol.h"
+#include "bazooka.h"
+#include "sniperrifle.h"
+
 Game::Game()
 {
     map = new Board("mapa.txt");
-    map->addMobile(new Player(map,3,500, 20, 30));
+    map->addMobile(new Player(map,3,1000, 20, 30));
     numberOfBazookers=1;
     numberOfPistolers=1;
     numberOfSnipers=1;
@@ -32,7 +36,7 @@ void Game::setEnemies()
 {
     for(int i=0;i<numberOfBazookers;i++)
     {
-        map->addMobile(new Bazooker(map,1,600, 30, 40));
+        map->addMobile(new Bazooker(map,1,1000, 30, 40));
     }
     for(int i=0;i<numberOfPistolers;i++)
     {
@@ -40,14 +44,13 @@ void Game::setEnemies()
     }
     for(int i=0;i<numberOfSnipers;i++)
     {
-        map->addMobile(new Sniper(map,0,400, 20, 30));
+        map->addMobile(new Sniper(map,0,1000, 20, 30));
     }
 }
 
 void Game::updateGame()
 {
     Player* tmpPlayer;
-    Creature* tmpCreature;
     for (int i=0; i<map->getNumberOfMobiles(); i++)
     {
         if(map->getMobile(i)->getToRemove())
@@ -64,8 +67,57 @@ void Game::updateGame()
             {
                 tmpPlayer->ChangeWeapon();
             }
-            tmpCreature=dynamic_cast<Creature*>(map->getMobile(i));
-            if(tmpCreature)
+        }
+    }
+}
+
+void Game::PistolShoot()
+{
+    Creature *tmpCreature;
+    Pistol* tmpPistol;
+    for(int i=0;i<map->getNumberOfMobiles();i++)
+    {
+        tmpCreature=dynamic_cast<Creature*>(map->getMobile(i));
+        if(tmpCreature)
+        {
+            tmpPistol=dynamic_cast<Pistol*>(tmpCreature->getWeponPtr());
+            if(tmpPistol)
+            {
+                tmpCreature->shoot(map);
+            }
+        }
+    }
+}
+
+void Game::SniperShoot()
+{
+    Creature *tmpCreature;
+    SniperRifle* tmpSniperRifle;
+    for(int i=0;i<map->getNumberOfMobiles();i++)
+    {
+        tmpCreature=dynamic_cast<Creature*>(map->getMobile(i));
+        if(tmpCreature)
+        {
+            tmpSniperRifle=dynamic_cast<SniperRifle*>(tmpCreature->getWeponPtr());
+            if(tmpSniperRifle)
+            {
+                tmpCreature->shoot(map);
+            }
+        }
+    }
+}
+
+void Game::BazookaShoot()
+{
+    Creature *tmpCreature;
+    Bazooka* tmpBazooka;
+    for(int i=0;i<map->getNumberOfMobiles();i++)
+    {
+        tmpCreature=dynamic_cast<Creature*>(map->getMobile(i));
+        if(tmpCreature)
+        {
+            tmpBazooka=dynamic_cast<Bazooka*>(tmpCreature->getWeponPtr());
+            if(tmpBazooka)
             {
                 tmpCreature->shoot(map);
             }

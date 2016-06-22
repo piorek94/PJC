@@ -12,6 +12,9 @@ public:
     void updateGame();
     bool win();
     bool lose();
+    void PistolShoot();
+    void SniperShoot();
+    void BazookaShoot();
 
 private:
     Board *map;

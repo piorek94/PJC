@@ -1,8 +1,15 @@
 ﻿#include "gwindow.h"
 
 Uint32 callback( Uint32 interval, void* param );
+Uint32 callbackPistol( Uint32 interval, void* param );
+Uint32 callbackBazooka( Uint32 interval, void* param );
+Uint32 callbackSniper( Uint32 interval, void* param );
+
 GWindow* mainWindow;
-SDL_TimerID timer;
+SDL_TimerID timerGame;
+SDL_TimerID timerPistol;
+SDL_TimerID timerBazooka;
+SDL_TimerID timerSniper;
 
 bool move_up = false;
 bool move_down = false;
@@ -13,7 +20,6 @@ bool sniperrifleOn = false;
 bool bazookaOn = false;
 
 const Uint8 * keystate = SDL_GetKeyboardState( NULL );
-SDL_Event change;
 int main( int argc, char* args[] )
 {
     mainWindow=new GWindow();
@@ -29,7 +35,11 @@ int main( int argc, char* args[] )
         }
         else
         {
-            timer = SDL_AddTimer(60, callback, NULL);
+            timerGame = SDL_AddTimer(60, callback, NULL);
+            timerPistol = SDL_AddTimer(1000, callbackPistol, NULL);
+            timerBazooka = SDL_AddTimer(3000, callbackBazooka, NULL);
+            timerSniper = SDL_AddTimer(4000, callbackSniper, NULL);
+
             bool quit=false;
             SDL_Event e;
             while (!quit)
@@ -44,7 +54,7 @@ int main( int argc, char* args[] )
             }
         }
     }
-    SDL_RemoveTimer(timer);
+    SDL_RemoveTimer(timerGame);
     delete mainWindow;
     return 0;
 }
@@ -101,5 +111,23 @@ Uint32 callback(Uint32 interval, void *param)
         sniperrifleOn=true;
     }
     mainWindow->timerUpdate();
+    return interval;
+}
+
+Uint32 callbackPistol(Uint32 interval, void *param)
+{
+    mainWindow->getGamePtr()->PistolShoot();
+    return interval;
+}
+
+Uint32 callbackBazooka(Uint32 interval, void *param)
+{
+    mainWindow->getGamePtr()->BazookaShoot();
+    return interval;
+}
+
+Uint32 callbackSniper(Uint32 interval, void *param)
+{
+    mainWindow->getGamePtr()->SniperShoot();
     return interval;
 }
