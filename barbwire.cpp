@@ -1,10 +1,10 @@
 #include "barbwire.h"
 #include "creature.h"
 
-Barbwire::Barbwire(float _x, float _y, int _damage)
+Barbwire::Barbwire(float _x, float _y)
     : Obstacle(_x, _y)
 {
-    Damage=_damage;
+    Damage=2;
 }
 
 Barbwire::~Barbwire()

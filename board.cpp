@@ -54,11 +54,11 @@ bool Board::loadBoard(std::string _pathBoard)
        }
        if(tmp==mud)
        {
-           obs = new Mud(posX,posY,2);
+           obs = new Mud(posX,posY);
        }
        if(tmp==barbwire)
        {
-           obs = new Barbwire(posX,posY,2);
+           obs = new Barbwire(posX,posY);
        }
        obstacles.push_back(obs);
     }

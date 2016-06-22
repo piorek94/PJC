@@ -7,7 +7,7 @@ class Mud : public Obstacle
 private:
     float Slowness;
 public:
-    Mud(float _x, float _y, float _slowness);
+    Mud(float _x, float _y);
     virtual ~Mud();
     bool CanPass();
     void affect(Creature* _creature,bool condition);

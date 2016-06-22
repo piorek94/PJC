@@ -6,15 +6,14 @@
 
 class Creature : public Mobile
 {
-protected:
+    void setStartPosition(Board *_map);
+    bool collisionCreatureStart(Board *_map);
     int Hp;
     int MaxHp;
     float MaxSpeed;
-    void setStartPosition(Board *_map);
-    bool collisionCreatureStart(Board *_map);
     void Dead();
+protected:
     TypeWeapon* Weapon;
-    int Range=100;
 public:
     Creature(Board *_map, float _speed, int _maxHp, int _width, int _height);
     virtual ~Creature();

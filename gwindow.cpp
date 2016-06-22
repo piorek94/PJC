@@ -27,6 +27,7 @@ GWindow::GWindow()
     bazooka=NULL;
     pistol=NULL;
     sniperrifle=NULL;
+//    bullet=NULL;
 }
 
 bool GWindow::init()
@@ -70,6 +71,7 @@ GWindow::~GWindow()
     SDL_FreeSurface(bazooka);
     SDL_FreeSurface(pistol);
     SDL_FreeSurface(sniperrifle);
+//    SDL_FreeSurface(bullet);
     screenSurface=NULL;
     background=NULL;
     player=NULL;
@@ -83,6 +85,7 @@ GWindow::~GWindow()
     bazooka=NULL;
     pistol=NULL;
     sniperrifle=NULL;
+//    bullet=NULL;
     SDL_DestroyWindow( window );
     SDL_Quit();
 }
@@ -206,10 +209,10 @@ bool  GWindow::loadMedia()
 {
     bool success = true;
     background=loadSurface("trawa.bmp");
-    wall =loadSurface("wall.bmp");
+    wall =loadSurface("wall1.bmp");
     player=loadSurface("soilder.bmp");
     enemy=loadSurface("enemy1.bmp");
-    mud = loadSurface("mud.bmp");
+    mud = loadSurface("mud1.bmp");
     barbwire = loadSurface("barbwire.bmp");
     lose = loadSurface("lose.bmp");
     win = loadSurface("win.bmp");
@@ -217,9 +220,10 @@ bool  GWindow::loadMedia()
     bazooka = loadSurface("bazooka.bmp");
     pistol = loadSurface("pistol.bmp");
     sniperrifle = loadSurface("sniperrifle.bmp");
+//    bullet = loadSurface("bullet.bmp");
 
     if(background==NULL || wall == NULL || player == NULL || enemy == NULL || mud==NULL || barbwire==NULL || lose == NULL || win == NULL
-            || sniper == NULL /*|| bazooka == NULL ||pistol == NULL */|| sniperrifle == NULL)
+            || sniper == NULL || bazooka == NULL ||pistol == NULL || sniperrifle == NULL)
     {
         std::cout<<"Failed to load texture image!\n";
         success =false;

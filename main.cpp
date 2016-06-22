@@ -10,7 +10,7 @@ bool move_right = false;
 bool move_left = false;
 bool pistolOn = false;
 bool sniperrifleOn = false;
-bool bazookaOn = true;
+bool bazookaOn = false;
 
 const Uint8 * keystate = SDL_GetKeyboardState( NULL );
 SDL_Event change;

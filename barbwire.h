@@ -7,7 +7,7 @@ class Barbwire : public Obstacle
 private:
     int Damage;
 public:
-    Barbwire(float _x, float _y, int _damage);
+    Barbwire(float _x, float _y);
     virtual ~Barbwire();
     void affect(Creature* _creature,bool condition);
     bool CanPass();

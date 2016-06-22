@@ -22,6 +22,7 @@ private:
     SDL_Surface *bazooka;
     SDL_Surface *pistol;
     SDL_Surface *sniperrifle;
+//    SDL_Surface *bullet;
     Game* game;
     SDL_Surface* loadSurface( std::string path );
     void showObstacles();

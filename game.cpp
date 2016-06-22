@@ -51,6 +51,7 @@ void Game::updateGame()
     {
         if(map->getMobile(i)->getToRemove())
         {
+            delete (map->getMobile(i));
             map->removeMobile(i);
         }
         else

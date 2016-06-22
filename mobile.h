@@ -19,7 +19,6 @@ public:
     bool getToRemove();
     virtual void move(Board *_map)=0;
     virtual void checkField(Board *_map)=0;
-//    bool isOn(float _xc, float _yc, Object *_field);
 };
 
 #endif // MOBILE_H
