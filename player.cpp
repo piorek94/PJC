@@ -2,7 +2,7 @@
 #include "pistol.h"
 #include "bazooka.h"
 #include "sniperrifle.h"
-
+#include "board.h"
 
 
 Player::Player(Board *_map, float _speed, int _maxHp, int _width, int _height)
@@ -59,7 +59,32 @@ void Player::move(Board *_map)
 
 void Player::shoot(Board *_map)
 {
-
+        if(PlayerShootOn)
+        {
+            float startX;
+            float startY;
+            if((PlayerDstX-Width/2)<=X-2)
+            {
+                startY=Y+Height/2;
+                startX=X-4;
+            }
+            else if((PlayerDstY-Height/2)<=Y-2)
+            {
+                startY=Y-4;
+                startX=X+Width/2;
+            }
+            else if((PlayerDstX-Width/2)>=X+Width+2)
+            {
+                startY=Y+Height/2;
+                startX=X+Width+2;
+            }
+            else if((PlayerDstY-Height/2)>=X+Height+2)
+            {
+                startY=Y+Height+4;
+                startX=X+Width/2;
+            }
+            _map->addMobile(Weapon->CreateBullet(PlayerDstX,PlayerDstY,startX,startY));
+        }
 }
 
 void Player::ChangeWeapon()

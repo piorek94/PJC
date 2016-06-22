@@ -11,6 +11,9 @@ extern bool move_left;
 extern bool pistolOn;
 extern bool sniperrifleOn;
 extern bool bazookaOn;
+extern bool PlayerShootOn;
+extern float PlayerDstX;
+extern float PlayerDstY;
 
 class Player : public Creature
 {

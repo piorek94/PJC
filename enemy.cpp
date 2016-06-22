@@ -38,7 +38,7 @@ void Enemy::shoot(Board *_map)
                 startY=Y+Height/2;
                 startX=X+Width+2;
             }
-            else if((dst_X-Height/2)>=X+Height+2)
+            else if((dst_Y-Height/2)>=X+Height+2)
             {
                 startY=Y+Height+4;
                 startX=X+Width/2;

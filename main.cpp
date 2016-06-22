@@ -18,6 +18,9 @@ bool move_left = false;
 bool pistolOn = false;
 bool sniperrifleOn = false;
 bool bazookaOn = false;
+bool PlayerShootOn = false;
+float PlayerDstX = 0;
+float PlayerDstY = 0;
 
 const Uint8 * keystate = SDL_GetKeyboardState( NULL );
 int main( int argc, char* args[] )
